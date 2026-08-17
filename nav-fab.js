@@ -56,20 +56,10 @@
       });
     }
 
-    // Play Demo FAB — triggers animation when popup is ready
+    // Play Demo FAB — click to trigger presentation
     const playBtn = document.getElementById("demoPlayFabBtn");
     if (playBtn) {
-      // Poll until window._presentationReady is set by main.js
-      const readyCheck = setInterval(() => {
-        if (window._presentationReady) {
-          clearInterval(readyCheck);
-          playBtn.classList.add("pulse-ready");
-        }
-      }, 300);
-
       playBtn.addEventListener("click", () => {
-        if (!window._presentationReady) return;
-        playBtn.classList.remove("pulse-ready");
         if (typeof window.startAutomatedPresentation === "function") {
           window.startAutomatedPresentation();
         }

@@ -102,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoContainer = document.getElementById("videoContainer");
   const introVideo = document.getElementById("introVideo");
   const mainScreen = document.getElementById("mainScreen");
-  const popup = document.getElementById("popup");
   const popupTitle = document.querySelector(".popup-title");
   const particleCanvas = null; // removed
   const btnYes = document.getElementById("btnYes");
@@ -127,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Success Drawer Elements
   const successDrawer = document.getElementById("successDrawer");
+  const popup = document.getElementById("popup");
   const copyCodeBtn = document.getElementById("copyCodeBtn");
   const uniqueCodeText = document.getElementById("uniqueCodeText");
   const successContinueBtn = document.getElementById("successContinueBtn");
@@ -497,8 +497,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!videoContainer || videoContainer.dataset.transitioned) return;
     videoContainer.dataset.transitioned = "true";
 
-    // Popup bounces in simultaneously — feels like one continuous moment
-    gsap.to(popup, {
+    // RedemptionDrawer bounces in directly after video — feels like one continuous moment
+    if (redemptionDrawer) {
+      redemptionDrawer.style.display = "block";
+      gsap.set(redemptionDrawer, { scale: 0, y: 40, opacity: 0 }); // reset to start state
+    }
+    gsap.to(redemptionDrawer, {
       scale: 1,
       y: 0,
       opacity: 1,
@@ -2322,7 +2326,7 @@ Your Instructions:
       <div class="sms-content">
         <div class="sms-title" style="font-weight: 700; color: #0f172a;">PAYTM <span class="sms-time" style="font-size: 10px; color: #64748b; font-weight: 400;">now</span></div>
         <div class="sms-body" style="font-size: 12px; color: #334155; margin-top: 2px;">
-          <strong>Cashback Received: ₹30.00</strong><br/>
+          <strong>Cashback Received: ₹50.00</strong><br/>
           <span style="font-size: 10px; color: #64748b; display: block; margin-top: 1px;">Txn ID: 2026080415309483 • Ref: Tropicano Mango Rush Claim vpa: toffee@upi</span>
         </div>
       </div>
@@ -2338,7 +2342,7 @@ Your Instructions:
   window.triggerPaytmCashbackNotification = triggerPaytmCashbackNotification;
 
   function openSocialRatingModal() {
-    switchCard(successDrawer, socialRatingModal);
+    switchCard(popup, socialRatingModal);
   }
 
   function closeSocialRatingModal() {
@@ -2401,7 +2405,7 @@ Your Instructions:
 
   if (successContinueBtn) {
     successContinueBtn.addEventListener("click", () => {
-      openSocialRatingModal();
+      switchCard(successDrawer, popup);
     });
   }
 
@@ -2640,8 +2644,8 @@ Your Instructions:
     const runner = Runner.create();
     Runner.run(runner, engine);
 
-    // Get bounding client rect dimensions of the actual HTML .popup-card element
-    const popupEl = document.querySelector(".popup-card");
+    // Get bounding client rect dimensions of the actual HTML #popup element
+    const popupEl = document.getElementById("popup") || document.querySelector(".popup-card");
     let popupWidth = 340;
     let popupHeight = 520;
     if (popupEl) {
@@ -2853,7 +2857,8 @@ Your Instructions:
         ease: "power1.inOut",
       });
       if (btn.id === "btnYes") {
-        setTimeout(openRedemptionDrawer, 800);
+        setTimeout(openSocialRatingModal, 800);
+        setTimeout(triggerPaytmCashbackNotification, 2000); // Money received notification after 2s
       } else if (btn.id === "btnNo") {
         // Open the retailer issue report drawer immediately
         setTimeout(openRetailerDrawer, 400);

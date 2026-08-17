@@ -458,7 +458,7 @@ body {
 
 .form-header-title h3 {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 600;
   color: #1e0f00;
   letter-spacing: -0.3px;
   margin: 0 0 4px 0;
@@ -846,7 +846,7 @@ body {
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid var(--card-border);
-  background: #000;
+  background: #291300;
   margin: 16px 0 10px 0;
 }
 
@@ -951,7 +951,7 @@ body {
 
 .dash-hamburger:hover {
   background: rgba(0, 0, 0, 0.12);
-  color: #000;
+  color: #291300;
 }
 
 .dash-topbar-logo {
