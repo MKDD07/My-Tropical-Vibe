@@ -1,52 +1,54 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize Background Music (15% volume, looping)
-  const bgMusic = new Audio("https://cdn.pixabay.com/download/audio/2025/03/06/audio_88fa8997e5.mp3s");
+  const bgMusic = new Audio(
+    "https://cdn.pixabay.com/download/audio/2025/03/06/audio_88fa8997e5.mp3s",
+  );
   bgMusic.volume = 0.15;
   bgMusic.loop = true;
 
   // =========================================================
   // FLOATING FRUIT / ASSET CONFIGURATION SETTINGS
-  // Modify these values manually to change which images are used, 
+  // Modify these values manually to change which images are used,
   // their sizes, animation speeds, and rotation offsets.
   // Location coordinates (top/left) are randomized automatically.
   // =========================================================
   const FLOATING_ASSETS_CONFIG = [
     {
-      src: "assets/fruits/0001",     // File lacks .png extension in dir listing
-      width: "120px",                // Size (width)
-      animationDuration: "7s",       // Speed of floating cycle
-      rotationOffset: "-8deg"        // Initial tilt
+      src: "assets/fruits/0001", // File lacks .webp extension in dir listing
+      width: "120px", // Size (width)
+      animationDuration: "7s", // Speed of floating cycle
+      rotationOffset: "-8deg", // Initial tilt
     },
     {
-      src: "assets/fruits/0002.png",
+      src: "assets/fruits/0002.webp",
       width: "130px",
       animationDuration: "9s",
-      rotationOffset: "10deg"
+      rotationOffset: "10deg",
     },
     {
-      src: "assets/fruits/0003.png",
+      src: "assets/fruits/0003.webp",
       width: "110px",
       animationDuration: "8s",
-      rotationOffset: "0deg"
+      rotationOffset: "0deg",
     },
     {
-      src: "assets/fruits/0004.png",
+      src: "assets/fruits/0004.webp",
       width: "100px",
       animationDuration: "10s",
-      rotationOffset: "15deg"
+      rotationOffset: "15deg",
     },
     {
-      src: "assets/fruits/0005.png",
+      src: "assets/fruits/0005.webp",
       width: "140px",
       animationDuration: "11s",
-      rotationOffset: "-15deg"
+      rotationOffset: "-15deg",
     },
     {
-      src: "assets/fruits/0007.png",
+      src: "assets/fruits/0007.webp",
       width: "90px",
       animationDuration: "12s",
-      rotationOffset: "5deg"
-    }
+      rotationOffset: "5deg",
+    },
   ];
 
   // Dynamically generate background floaters from config with randomized positions
@@ -60,41 +62,42 @@ document.addEventListener("DOMContentLoaded", () => {
       img.src = cfg.src;
       img.className = `floater floater-custom-${idx + 1}`;
       img.alt = "";
-      
+
       // Inline styles for absolute layout properties
       img.style.position = "absolute";
       img.style.width = cfg.width;
-      
+
       // Randomize position coordinate placements within reasonable viewport safety boundaries
-      const randomTop = Math.floor(Math.random() * 80) + 5;  // 5% to 85%
+      const randomTop = Math.floor(Math.random() * 80) + 5; // 5% to 85%
       const randomLeft = Math.floor(Math.random() * 85) + 5; // 5% to 90%
       img.style.top = `${randomTop}%`;
       img.style.left = `${randomLeft}%`;
       img.style.right = "auto";
       img.style.bottom = "auto";
-      
+
       // Setup dynamic CSS variable animation support
       img.style.setProperty("--float-dur", cfg.animationDuration);
       img.style.setProperty("--rot-offset", cfg.rotationOffset);
-      
+
       container.appendChild(img);
     });
   }
-
 
   // Attempt direct autoplay immediately
   bgMusic.play().catch(() => {
     // If blocked by browser policies, fallback to play on first click/touchstart
     const startMusic = () => {
-      bgMusic.play().then(() => {
-        document.removeEventListener("click", startMusic);
-        document.removeEventListener("touchstart", startMusic);
-      }).catch(err => console.warn("Audio play failed on interaction", err));
+      bgMusic
+        .play()
+        .then(() => {
+          document.removeEventListener("click", startMusic);
+          document.removeEventListener("touchstart", startMusic);
+        })
+        .catch((err) => console.warn("Audio play failed on interaction", err));
     };
     document.addEventListener("click", startMusic);
     document.addEventListener("touchstart", startMusic);
   });
-
 
   const videoContainer = document.getElementById("videoContainer");
   const introVideo = document.getElementById("introVideo");
@@ -145,55 +148,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Soft, listenable chime click sound using Web Audio API
   function playClickSound() {
-    if (typeof window.AudioContext === "undefined" && typeof window.webkitAudioContext === "undefined") return;
+    if (
+      typeof window.AudioContext === "undefined" &&
+      typeof window.webkitAudioContext === "undefined"
+    )
+      return;
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
-      
+
       osc.type = "sine";
       // Gentle bubble pop frequency sweep
       osc.frequency.setValueAtTime(260, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 0.12);
-      
+      osc.frequency.exponentialRampToValueAtTime(
+        180,
+        audioCtx.currentTime + 0.12,
+      );
+
       gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
-      
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioCtx.currentTime + 0.12,
+      );
+
       osc.connect(gain);
       gain.connect(audioCtx.destination);
-      
+
       osc.start();
       osc.stop(audioCtx.currentTime + 0.12);
-    } catch(e) {}
+    } catch (e) {}
   }
 
   // Softer, bell-like chime hover sound using Web Audio API
   function playHoverSound() {
-    if (typeof window.AudioContext === "undefined" && typeof window.webkitAudioContext === "undefined") return;
+    if (
+      typeof window.AudioContext === "undefined" &&
+      typeof window.webkitAudioContext === "undefined"
+    )
+      return;
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
-      
+
       osc.type = "sine";
       // Very gentle slide chime
       osc.frequency.setValueAtTime(380, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(520, audioCtx.currentTime + 0.08);
-      
+      osc.frequency.exponentialRampToValueAtTime(
+        520,
+        audioCtx.currentTime + 0.08,
+      );
+
       gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-      
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioCtx.currentTime + 0.08,
+      );
+
       osc.connect(gain);
       gain.connect(audioCtx.destination);
-      
+
       osc.start();
       osc.stop(audioCtx.currentTime + 0.08);
-    } catch(e) {}
+    } catch (e) {}
   }
 
   // iOS-style double chime for push notifications using Web Audio API
   function playNotificationSound() {
-    if (typeof window.AudioContext === "undefined" && typeof window.webkitAudioContext === "undefined") return;
+    if (
+      typeof window.AudioContext === "undefined" &&
+      typeof window.webkitAudioContext === "undefined"
+    )
+      return;
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const playNote = (freq, delay, duration) => {
@@ -202,7 +229,10 @@ document.addEventListener("DOMContentLoaded", () => {
         osc.type = "sine";
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
         gain.gain.setValueAtTime(0.08, audioCtx.currentTime + delay);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + duration);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioCtx.currentTime + delay + duration,
+        );
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start(audioCtx.currentTime + delay);
@@ -210,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       playNote(523.25, 0, 0.2); // C5
       playNote(659.25, 0.08, 0.25); // E5
-    } catch(e) {}
+    } catch (e) {}
   }
   window.playNotificationSound = playNotificationSound;
 
@@ -221,7 +251,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (now - lastScratchSoundTime < 60) return;
     lastScratchSoundTime = now;
 
-    if (typeof window.AudioContext === "undefined" && typeof window.webkitAudioContext === "undefined") return;
+    if (
+      typeof window.AudioContext === "undefined" &&
+      typeof window.webkitAudioContext === "undefined"
+    )
+      return;
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const bufferSize = audioCtx.sampleRate * 0.08;
@@ -232,26 +266,33 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const noise = audioCtx.createBufferSource();
       noise.buffer = buffer;
-      
+
       const filter = audioCtx.createBiquadFilter();
       filter.type = "bandpass";
       filter.frequency.value = 1000;
-      
+
       const gain = audioCtx.createGain();
       gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-      
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioCtx.currentTime + 0.08,
+      );
+
       noise.connect(filter);
       filter.connect(gain);
       gain.connect(audioCtx.destination);
       noise.start();
-    } catch(e) {}
+    } catch (e) {}
   }
   window.playScratchSound = playScratchSound;
 
   // Pleasant digital pluck arpeggio for copy action using Web Audio API
   function playCopySound() {
-    if (typeof window.AudioContext === "undefined" && typeof window.webkitAudioContext === "undefined") return;
+    if (
+      typeof window.AudioContext === "undefined" &&
+      typeof window.webkitAudioContext === "undefined"
+    )
+      return;
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const playNote = (freq, delay, duration) => {
@@ -260,7 +301,10 @@ document.addEventListener("DOMContentLoaded", () => {
         osc.type = "sine";
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
         gain.gain.setValueAtTime(0.08, audioCtx.currentTime + delay);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + duration);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioCtx.currentTime + delay + duration,
+        );
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start(audioCtx.currentTime + delay);
@@ -269,16 +313,18 @@ document.addEventListener("DOMContentLoaded", () => {
       playNote(440, 0, 0.1);
       playNote(554.37, 0.05, 0.1);
       playNote(659.25, 0.1, 0.15);
-    } catch(e) {}
+    } catch (e) {}
   }
   window.playCopySound = playCopySound;
 
   function registerUniversalClickFeedback() {
-    const clickables = document.querySelectorAll("button, .btn-option, .copy-code-btn, .social-icon-btn, .close-steps-btn, .close-drawer-btn, .star-btn");
+    const clickables = document.querySelectorAll(
+      "button, .btn-option, .copy-code-btn, .social-icon-btn, .close-steps-btn, .close-drawer-btn, .star-btn",
+    );
     clickables.forEach((btn) => {
       if (btn.dataset.clickBound) return;
       btn.dataset.clickBound = "true";
-      
+
       btn.addEventListener("click", () => {
         playClickSound();
         gsap.to(btn, {
@@ -286,7 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
           duration: 0.08,
           yoyo: true,
           repeat: 1,
-          ease: "power1.inOut"
+          ease: "power1.inOut",
         });
       });
 
@@ -302,8 +348,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Helper to transition out of QR scanner
   /* ---------- 1. QR CAMERA SCANNER INITIALIZATION ---------- */
   let html5Qrcode = null;
-  
-  window.startQrScannerCamera = function() {
+
+  window.startQrScannerCamera = function () {
     if (!qrScannerContainer) return;
     qrScannerContainer.style.display = "flex";
     qrScannerContainer.style.opacity = "1";
@@ -311,47 +357,53 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof Html5Qrcode !== "undefined" && !html5Qrcode) {
       // Initialize scanner on the HTML reader div
       html5Qrcode = new Html5Qrcode("qrReader");
-      
+
       const config = { fps: 10, qrbox: { width: 220, height: 220 } };
 
-      html5Qrcode.start(
-        { facingMode: "environment" },
-        config,
-        (decodedText) => {
-          if (decodedText.trim().toLowerCase() === "mohit") {
-            if (qrFeedback) {
-              qrFeedback.style.color = "#4caf50";
-              qrFeedback.textContent = "Verification Successful! Loading...";
+      html5Qrcode
+        .start(
+          { facingMode: "environment" },
+          config,
+          (decodedText) => {
+            if (decodedText.trim().toLowerCase() === "mohit") {
+              if (qrFeedback) {
+                qrFeedback.style.color = "#4caf50";
+                qrFeedback.textContent = "Verification Successful! Loading...";
+              }
+              // Stop camera and transition to video
+              stopQrScannerCamera();
+              setTimeout(dismissQrScanner, 600);
+            } else {
+              if (qrFeedback) {
+                qrFeedback.style.color = "#f44336";
+                qrFeedback.textContent =
+                  "Invalid QR code. Scan target: 'mohit'";
+              }
             }
-            // Stop camera and transition to video
-            stopQrScannerCamera();
-            setTimeout(dismissQrScanner, 600);
-          } else {
-            if (qrFeedback) {
-              qrFeedback.style.color = "#f44336";
-              qrFeedback.textContent = "Invalid QR code. Scan target: 'mohit'";
-            }
+          },
+          (errorMessage) => {
+            // Silent scan error feedback
+          },
+        )
+        .catch((err) => {
+          if (qrFeedback) {
+            qrFeedback.style.color = "#f44336";
+            qrFeedback.textContent = "Camera initialization failed: " + err;
           }
-        },
-        (errorMessage) => {
-          // Silent scan error feedback
-        }
-      ).catch(err => {
-        if (qrFeedback) {
-          qrFeedback.style.color = "#f44336";
-          qrFeedback.textContent = "Camera initialization failed: " + err;
-        }
-      });
+        });
     }
   };
 
   function stopQrScannerCamera() {
     if (html5Qrcode && html5Qrcode.isScanning) {
-      html5Qrcode.stop().then(() => {
-        html5Qrcode = null;
-      }).catch(() => {
-        html5Qrcode = null;
-      });
+      html5Qrcode
+        .stop()
+        .then(() => {
+          html5Qrcode = null;
+        })
+        .catch(() => {
+          html5Qrcode = null;
+        });
     }
   }
 
@@ -379,7 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
           presentationSelectorModal.style.display = "flex";
           presentationSelectorModal.style.opacity = "1";
         }
-      }
+      },
     });
   }
 
@@ -405,7 +457,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.fromTo(
       videoContainer,
       { opacity: 0 },
-      { opacity: 1, duration: 1.2, ease: "power2.inOut" }
+      { opacity: 1, duration: 1.2, ease: "power2.inOut" },
     );
 
     introVideo.muted = true;
@@ -419,7 +471,8 @@ document.addEventListener("DOMContentLoaded", () => {
     introVideo.addEventListener("timeupdate", function onTimeUpdate() {
       if (!nearEndTriggered && introVideo.duration && introVideo.duration > 0) {
         const remaining = introVideo.duration - introVideo.currentTime;
-        if (remaining <= 0.08) {         // ≤ 80ms left
+        if (remaining <= 0.08) {
+          // ≤ 80ms left
           nearEndTriggered = true;
           introVideo.removeEventListener("timeupdate", onTimeUpdate);
           triggerSeamlessTransition();
@@ -434,10 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Safety fallback — 30s max
     setTimeout(() => {
-      if (
-        videoContainer &&
-        !videoContainer.dataset.transitioned
-      ) {
+      if (videoContainer && !videoContainer.dataset.transitioned) {
         triggerSeamlessTransition();
       }
     }, 30000);
@@ -467,7 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (playFab) {
           playFab.classList.add("pulse-ready");
         }
-      }
+      },
     });
 
     // Remove video from static frame after playback completes
@@ -481,7 +531,7 @@ document.addEventListener("DOMContentLoaded", () => {
           introVideo.pause();
         }
         videoContainer.style.display = "none";
-      }
+      },
     });
   }
 
@@ -496,11 +546,12 @@ document.addEventListener("DOMContentLoaded", () => {
       resendOtpBtn.style.display = "inline-block";
       resendOtpBtn.disabled = true;
     }
-    
+
     // Show green toast notification
     const toast = document.createElement("div");
     toast.className = "toast-notification";
-    toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> OTP Code Sent Successfully!';
+    toast.innerHTML =
+      '<i class="fa-solid fa-circle-check"></i> OTP Code Sent Successfully!';
     document.body.appendChild(toast);
     setTimeout(() => toast.classList.add("show"), 50);
     setTimeout(() => {
@@ -527,7 +578,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let secondsLeft = 15;
     if (resendOtpBtn) resendOtpBtn.textContent = `Resend (${secondsLeft}s)`;
-    
+
     if (otpTimerInterval) clearInterval(otpTimerInterval);
     otpTimerInterval = setInterval(() => {
       secondsLeft--;
@@ -573,8 +624,11 @@ document.addEventListener("DOMContentLoaded", () => {
       presentationPointer.style.transition = "transform 0.15s ease";
       document.body.appendChild(presentationPointer);
     }
-    
-    gsap.set(presentationPointer, { x: window.innerWidth + 100, y: window.innerHeight + 100 });
+
+    gsap.set(presentationPointer, {
+      x: window.innerWidth + 100,
+      y: window.innerHeight + 100,
+    });
 
     const moveToAndClick = (element, delayBeforeClick, onCompleteCallback) => {
       if (!element) {
@@ -602,10 +656,10 @@ document.addEventListener("DOMContentLoaded", () => {
               },
               onComplete: () => {
                 setTimeout(onCompleteCallback, 1000);
-              }
+              },
             });
           }, delayBeforeClick);
-        }
+        },
       });
     };
 
@@ -629,7 +683,7 @@ document.addEventListener("DOMContentLoaded", () => {
             element.classList.remove("hovered");
             onCompleteCallback();
           }, duration);
-        }
+        },
       });
     };
 
@@ -686,10 +740,10 @@ document.addEventListener("DOMContentLoaded", () => {
               },
               onComplete: () => {
                 setTimeout(onCompleteCallback, 1000);
-              }
+              },
             });
           }, delayBeforeClick);
-        }
+        },
       });
     };
 
@@ -713,7 +767,7 @@ document.addEventListener("DOMContentLoaded", () => {
             element.classList.remove("hovered");
             onCompleteCallback();
           }, duration);
-        }
+        },
       });
     };
 
@@ -748,7 +802,9 @@ document.addEventListener("DOMContentLoaded", () => {
             moveToAndClick(sendOtpBtn, 500, () => {
               // Wait 1.0s (notification active), then type Happy Code
               setTimeout(() => {
-                const codeBoxes = document.querySelectorAll(".happy-code-container .code-box");
+                const codeBoxes = document.querySelectorAll(
+                  ".happy-code-container .code-box",
+                );
                 const codes = ["7", "8", "9", "2"];
 
                 const typeCodeBoxes = (boxIdx) => {
@@ -759,20 +815,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     setTimeout(() => {
                       if (chkSmoker) {
                         chkSmoker.checked = true;
-                        chkSmoker.dispatchEvent(new Event("change", { bubbles: true }));
+                        chkSmoker.dispatchEvent(
+                          new Event("change", { bubbles: true }),
+                        );
                       }
 
                       setTimeout(() => {
                         if (chkUpi) {
                           chkUpi.checked = true;
-                          chkUpi.dispatchEvent(new Event("change", { bubbles: true }));
+                          chkUpi.dispatchEvent(
+                            new Event("change", { bubbles: true }),
+                          );
                         }
 
-                        const submitRedemptionBtn = document.getElementById("submitRedemptionBtn");
+                        const submitRedemptionBtn = document.getElementById(
+                          "submitRedemptionBtn",
+                        );
                         moveToAndClick(submitRedemptionBtn, 500, () => {
                           // Stage 3: Scratch card and reveal
                           setTimeout(() => {
-                            const scratchCanvas = document.getElementById("scratchCanvas");
+                            const scratchCanvas =
+                              document.getElementById("scratchCanvas");
                             if (!scratchCanvas) return;
 
                             const rect = scratchCanvas.getBoundingClientRect();
@@ -789,10 +852,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                 const checkCanvasClearCount = (canvas) => {
                                   const ctx = canvas.getContext("2d");
-                                  const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                                  const imgData = ctx.getImageData(
+                                    0,
+                                    0,
+                                    canvas.width,
+                                    canvas.height,
+                                  );
                                   let clearCount = 0;
                                   const totalPixels = imgData.data.length / 4;
-                                  for (let i = 3; i < imgData.data.length; i += 4 * 8) {
+                                  for (
+                                    let i = 3;
+                                    i < imgData.data.length;
+                                    i += 4 * 8
+                                  ) {
                                     if (imgData.data[i] === 0) {
                                       clearCount += 8;
                                     }
@@ -809,86 +881,157 @@ document.addEventListener("DOMContentLoaded", () => {
                                       onComplete: () => {
                                         scratchCanvas.style.display = "none";
                                         fireGoldenConfetti();
-                                        
-                                        const tooltip = document.getElementById("copyTooltip");
+
+                                        const tooltip =
+                                          document.getElementById(
+                                            "copyTooltip",
+                                          );
                                         if (tooltip) {
                                           tooltip.classList.add("show");
                                           setTimeout(() => {
                                             tooltip.classList.remove("show");
                                           }, 4000);
                                         }
-                                        
+
                                         // Wait 1.0s, click copy button to trigger tooltip
                                         setTimeout(() => {
-                                          const copyCodeBtn = document.getElementById("copyCodeBtn");
-                                          moveToAndClick(copyCodeBtn, 500, () => {
-                                            // Wait 2.0s for tooltip to display, then click continue
-                                            setTimeout(() => {
-                                              const successContinueBtn = document.getElementById("successContinueBtn");
-                                              moveToAndClick(successContinueBtn, 500, () => {
-                                                // Stage 4: Give 5 Stars auto and hover each star
-                                                setTimeout(() => {
-                                                  const starBtns = document.querySelectorAll(".star-btn");
-                                                  
-                                                  const hoverAndSelectStars = (starIdx) => {
-                                                    if (starIdx >= starBtns.length) {
-                                                      // Click the 5th star to select 5 stars
-                                                      if (starBtns[4]) starBtns[4].click();
-                                                      
-                                                      // Stage 5: Hover over socials, then close
-                                                      setTimeout(() => {
-                                                        const socials = document.querySelectorAll(".social-icon-btn");
-                                                        triggerPaytmCashbackNotification();
-                                                        
-                                                        const hoverSocials = (socIdx) => {
-                                                          if (socIdx >= socials.length) {
-                                                            const socialDoneBtn = document.getElementById("socialDoneBtn");
-                                                            moveToAndClick(socialDoneBtn, 500, () => {
-                                                              gsap.to(presentationPointer, {
-                                                                opacity: 0,
-                                                                scale: 0,
-                                                                duration: 0.5,
-                                                                onComplete: () => presentationPointer.remove()
-                                                              });
-                                                            });
+                                          const copyCodeBtn =
+                                            document.getElementById(
+                                              "copyCodeBtn",
+                                            );
+                                          moveToAndClick(
+                                            copyCodeBtn,
+                                            500,
+                                            () => {
+                                              // Wait 2.0s for tooltip to display, then click continue
+                                              setTimeout(() => {
+                                                const successContinueBtn =
+                                                  document.getElementById(
+                                                    "successContinueBtn",
+                                                  );
+                                                moveToAndClick(
+                                                  successContinueBtn,
+                                                  500,
+                                                  () => {
+                                                    // Stage 4: Give 5 Stars auto and hover each star
+                                                    setTimeout(() => {
+                                                      const starBtns =
+                                                        document.querySelectorAll(
+                                                          ".star-btn",
+                                                        );
+
+                                                      const hoverAndSelectStars =
+                                                        (starIdx) => {
+                                                          if (
+                                                            starIdx >=
+                                                            starBtns.length
+                                                          ) {
+                                                            // Click the 5th star to select 5 stars
+                                                            if (starBtns[4])
+                                                              starBtns[4].click();
+
+                                                            // Stage 5: Hover over socials, then close
+                                                            setTimeout(() => {
+                                                              const socials =
+                                                                document.querySelectorAll(
+                                                                  ".social-icon-btn",
+                                                                );
+                                                              triggerPaytmCashbackNotification();
+
+                                                              const hoverSocials =
+                                                                (socIdx) => {
+                                                                  if (
+                                                                    socIdx >=
+                                                                    socials.length
+                                                                  ) {
+                                                                    const socialDoneBtn =
+                                                                      document.getElementById(
+                                                                        "socialDoneBtn",
+                                                                      );
+                                                                    moveToAndClick(
+                                                                      socialDoneBtn,
+                                                                      500,
+                                                                      () => {
+                                                                        gsap.to(
+                                                                          presentationPointer,
+                                                                          {
+                                                                            opacity: 0,
+                                                                            scale: 0,
+                                                                            duration: 0.5,
+                                                                            onComplete:
+                                                                              () =>
+                                                                                presentationPointer.remove(),
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                    return;
+                                                                  }
+                                                                  moveToAndHover(
+                                                                    socials[
+                                                                      socIdx
+                                                                    ],
+                                                                    600,
+                                                                    () => {
+                                                                      hoverSocials(
+                                                                        socIdx +
+                                                                          1,
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                };
+                                                              hoverSocials(0);
+                                                            }, 1000);
                                                             return;
                                                           }
-                                                          moveToAndHover(socials[socIdx], 600, () => {
-                                                            hoverSocials(socIdx + 1);
-                                                          });
+                                                          moveToAndHover(
+                                                            starBtns[starIdx],
+                                                            400,
+                                                            () => {
+                                                              hoverAndSelectStars(
+                                                                starIdx + 1,
+                                                              );
+                                                            },
+                                                          );
                                                         };
-                                                        hoverSocials(0);
-                                                      }, 1000);
-                                                      return;
-                                                    }
-                                                    moveToAndHover(starBtns[starIdx], 400, () => {
-                                                      hoverAndSelectStars(starIdx + 1);
-                                                    });
-                                                  };
-                                                  hoverAndSelectStars(0);
-                                                }, 1000);
-                                              });
-                                            }, 2000);
-                                          });
+                                                      hoverAndSelectStars(0);
+                                                    }, 1000);
+                                                  },
+                                                );
+                                              }, 2000);
+                                            },
+                                          );
                                         }, 1000);
-                                      }
+                                      },
                                     });
                                     return;
                                   }
 
-                                  const destX = sweep % 2 === 0 ? rect.right - 20 : rect.left + 20;
+                                  const destX =
+                                    sweep % 2 === 0
+                                      ? rect.right - 20
+                                      : rect.left + 20;
 
                                   gsap.to(presentationPointer, {
                                     x: destX,
                                     duration: 0.6,
                                     ease: "none",
                                     onUpdate: () => {
-                                      const pRect = presentationPointer.getBoundingClientRect();
-                                      const canvasRect = scratchCanvas.getBoundingClientRect();
-                                      const x = pRect.left - canvasRect.left + pRect.width / 2;
-                                      const y = pRect.top - canvasRect.top + pRect.height / 2;
+                                      const pRect =
+                                        presentationPointer.getBoundingClientRect();
+                                      const canvasRect =
+                                        scratchCanvas.getBoundingClientRect();
+                                      const x =
+                                        pRect.left -
+                                        canvasRect.left +
+                                        pRect.width / 2;
+                                      const y =
+                                        pRect.top -
+                                        canvasRect.top +
+                                        pRect.height / 2;
 
-                                      ctx.globalCompositeOperation = "destination-out";
+                                      ctx.globalCompositeOperation =
+                                        "destination-out";
                                       ctx.beginPath();
                                       ctx.arc(x, y, 22, 0, Math.PI * 2);
                                       ctx.fill();
@@ -896,17 +1039,18 @@ document.addEventListener("DOMContentLoaded", () => {
                                     },
                                     onComplete: () => {
                                       sweep++;
-                                      const clearPercent = checkCanvasClearCount(scratchCanvas);
+                                      const clearPercent =
+                                        checkCanvasClearCount(scratchCanvas);
                                       if (clearPercent > 0.35) {
                                         sweep = 5; // finish early
                                       }
                                       doSweep();
-                                    }
+                                    },
                                   });
                                 };
 
                                 doSweep();
-                              }
+                              },
                             });
                           }, 1800);
                         });
@@ -948,7 +1092,7 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 0.9,
         delay: 0.6,
         ease: "back.out(1.7)",
-      }
+      },
     );
 
     // Staggered tag & highlight text pop
@@ -963,7 +1107,7 @@ document.addEventListener("DOMContentLoaded", () => {
           delay: 0.9,
           stagger: 0.15,
           ease: "power2.out",
-        }
+        },
       );
     }
 
@@ -1154,7 +1298,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== RETAILER COMPLAINT + FAKE CALL LOGIC =====
   if (retailerGotItBtn) {
     retailerGotItBtn.addEventListener("click", () => {
-      const checked = document.querySelectorAll('input[name="retailerIssue"]:checked');
+      const checked = document.querySelectorAll(
+        'input[name="retailerIssue"]:checked',
+      );
       if (checked.length === 0) {
         // Shake the list to indicate validation failure
         const list = document.querySelector(".retailer-complaint-list");
@@ -1162,12 +1308,14 @@ document.addEventListener("DOMContentLoaded", () => {
           list.style.animation = "none";
           list.offsetHeight; // reflow
           list.style.animation = "shakeList 0.4s ease";
-          setTimeout(() => { list.style.animation = ""; }, 500);
+          setTimeout(() => {
+            list.style.animation = "";
+          }, 500);
         }
         return;
       }
 
-      const issues = Array.from(checked).map(c => c.value);
+      const issues = Array.from(checked).map((c) => c.value);
       playClickSound();
 
       // Close retailer drawer immediately
@@ -1177,8 +1325,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // Show "will call shortly" toast for 3s
       const callDelayToast = document.createElement("div");
       callDelayToast.className = "toast-notification";
-      callDelayToast.style.cssText = "background:rgba(28,28,30,0.95);border:1px solid rgba(255,255,255,0.08);";
-      callDelayToast.innerHTML = '<i class="fa-solid fa-phone-volume" style="color:#30d158"></i>&nbsp; Thank You! Our Support Team will call you shortly..';
+      callDelayToast.style.cssText =
+        "background:rgba(28,28,30,0.95);border:1px solid rgba(255,255,255,0.08);";
+      callDelayToast.innerHTML =
+        '<i class="fa-solid fa-phone-volume" style="color:#30d158"></i>&nbsp; Thank You! Our Support Team will call you shortly..';
       document.body.appendChild(callDelayToast);
       setTimeout(() => callDelayToast.classList.add("show"), 50);
       setTimeout(() => {
@@ -1197,7 +1347,8 @@ document.addEventListener("DOMContentLoaded", () => {
     warningGotItBtn.addEventListener("click", closeWarningModal);
 
   // ===== FAKE CALL SYSTEM =====
-  const GROQ_CF_ENDPOINT = "https://gpi-mock-updated.mkmkataria07.workers.dev/api/chat";
+  const GROQ_CF_ENDPOINT =
+    "https://gpi-mock-updated.mkmkataria07.workers.dev/api/chat";
 
   let callDurationTimer = null;
   let callSecondsElapsed = 0;
@@ -1292,7 +1443,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function startRingtone() {
     stopRingtone(); // clear any existing
-    if (typeof window.AudioContext === "undefined" && typeof window.webkitAudioContext === "undefined") return;
+    if (
+      typeof window.AudioContext === "undefined" &&
+      typeof window.webkitAudioContext === "undefined"
+    )
+      return;
     try {
       _ringtoneCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -1305,26 +1460,31 @@ document.addEventListener("DOMContentLoaded", () => {
           osc.type = "sine";
           osc.frequency.setValueAtTime(freq, _ringtoneCtx.currentTime + start);
           gain.gain.setValueAtTime(0.18, _ringtoneCtx.currentTime + start);
-          gain.gain.exponentialRampToValueAtTime(0.001, _ringtoneCtx.currentTime + start + duration);
+          gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            _ringtoneCtx.currentTime + start + duration,
+          );
           osc.connect(gain);
           gain.connect(_ringtoneCtx.destination);
           osc.start(_ringtoneCtx.currentTime + start);
           osc.stop(_ringtoneCtx.currentTime + start + duration);
         };
-        beep(880, 0, 0.3);      // A5 — first ring
-        beep(880, 0.35, 0.3);   // A5 — second ring
+        beep(880, 0, 0.3); // A5 — first ring
+        beep(880, 0.35, 0.3); // A5 — second ring
       };
 
       playRingPhase();
       _ringtoneInterval = setInterval(playRingPhase, 2000); // ring every 2s
-    } catch(e) {}
+    } catch (e) {}
   }
 
   function stopRingtone() {
     clearInterval(_ringtoneInterval);
     _ringtoneInterval = null;
     if (_ringtoneCtx) {
-      try { _ringtoneCtx.close(); } catch(e) {}
+      try {
+        _ringtoneCtx.close();
+      } catch (e) {}
       _ringtoneCtx = null;
     }
   }
@@ -1336,7 +1496,7 @@ document.addEventListener("DOMContentLoaded", () => {
       bgMusic.pause();
     }
     // Pause all <audio> and <video> elements on the page
-    document.querySelectorAll("audio, video").forEach(el => {
+    document.querySelectorAll("audio, video").forEach((el) => {
       if (!el.paused) {
         el._pausedByCall = true;
         el.pause();
@@ -1354,7 +1514,7 @@ document.addEventListener("DOMContentLoaded", () => {
       bgMusic._pausedByCall = false;
       bgMusic.play().catch(() => {});
     }
-    document.querySelectorAll("audio, video").forEach(el => {
+    document.querySelectorAll("audio, video").forEach((el) => {
       if (el._pausedByCall) {
         el._pausedByCall = false;
         el.play().catch(() => {});
@@ -1383,7 +1543,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const onMetadata = () => {
       introVideo.currentTime = introVideo.duration || 0;
-      
+
       let lastTime = performance.now();
       function reverseLoop(now) {
         if (videoContainer.dataset.transitioned !== "reverse_video") return;
@@ -1394,7 +1554,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (nextTime <= 0) {
           introVideo.currentTime = 0;
           introVideo.pause();
-          
+
           gsap.to(videoContainer, {
             opacity: 0,
             duration: 0.8,
@@ -1402,7 +1562,7 @@ document.addEventListener("DOMContentLoaded", () => {
             onComplete: () => {
               videoContainer.style.display = "none";
               if (onComplete) onComplete();
-            }
+            },
           });
         } else {
           introVideo.currentTime = nextTime;
@@ -1410,12 +1570,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      introVideo.play().then(() => {
-        introVideo.pause();
-        requestAnimationFrame(reverseLoop);
-      }).catch(() => {
-        requestAnimationFrame(reverseLoop);
-      });
+      introVideo
+        .play()
+        .then(() => {
+          introVideo.pause();
+          requestAnimationFrame(reverseLoop);
+        })
+        .catch(() => {
+          requestAnimationFrame(reverseLoop);
+        });
     };
 
     introVideo.addEventListener("loadedmetadata", onMetadata, { once: true });
@@ -1426,7 +1589,8 @@ document.addEventListener("DOMContentLoaded", () => {
     toast.className = "toast-notification";
     toast.style.background = "rgba(28,28,30,0.95)";
     toast.style.border = "1px solid rgba(255,255,255,0.1)";
-    toast.innerHTML = '<i class="fa-solid fa-phone-missed" style="color:#ff453a;"></i> Missed call — Tropicano Mango Rush Support';
+    toast.innerHTML =
+      '<i class="fa-solid fa-phone-missed" style="color:#ff453a;"></i> Missed call — Tropicano Mango Rush Support';
     document.body.appendChild(toast);
     setTimeout(() => toast.classList.add("show"), 50);
     setTimeout(() => {
@@ -1439,7 +1603,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const banner = document.getElementById("iosCallBanner");
     if (!banner) return;
     banner.classList.remove("show");
-    setTimeout(() => { banner.style.display = "none"; }, 600);
+    setTimeout(() => {
+      banner.style.display = "none";
+    }, 600);
   }
 
   /* =========================================================
@@ -1460,7 +1626,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const indicator = document.getElementById("voiceCallIndicator");
     if (indicator) {
       indicator.style.display = "flex";
-      requestAnimationFrame(() => requestAnimationFrame(() => indicator.classList.add("show")));
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => indicator.classList.add("show")),
+      );
     }
 
     // Start call duration timer
@@ -1483,24 +1651,27 @@ document.addEventListener("DOMContentLoaded", () => {
       out_of_stock: "Out of Stock",
       refused: "Retailer Refused",
       unaware: "Retailer Unaware",
-      closed: "Shop Was Closed"
+      closed: "Shop Was Closed",
     };
-    const issueText = issues.map(i => issueLabels[i] || i).join(", ");
+    const issueText = issues.map((i) => issueLabels[i] || i).join(", ");
 
-conversationHistory = [{
-  role: "system",
-  content: `You are Sneha, a warm and professional Tropicano Mango Rush customer support representative handling customer service calls.
+    conversationHistory = [
+      {
+        role: "system",
+        content: `You are Sneha, a warm and professional Tropicano Mango Rush customer support representative handling customer service calls.
 The customer reported these retailer issues: ${issueText}.
 Your Instructions:
 1. Begin the call by asking the customer which language they'd prefer to continue in (e.g., Hindi, English, or any other language they mention). Once they choose, continue the entire conversation in that language.
 2. Speak warmly, naturally, and concisely (1-2 short conversational sentences max).
 3. If the user doesn't respond or is silent, politely repeat your last question or ask if they are still on the line.
 4. Help address their reported retailer complaint, collect details if needed, and confirm escalation.
-5. When concluding the support call, include [CALL_END] at the very end of your final response.`
-}];
+5. When concluding the support call, include [CALL_END] at the very end of your final response.`,
+      },
+    ];
 
-const initialGreeting = "Namaste! I'm Sneha from Tropicano Mango Rush Support. Kya aap Hindi mein baat karna chahenge ya English mein? / Would you like to continue in Hindi or English?";
-conversationHistory.push({ role: "assistant", content: initialGreeting });
+    const initialGreeting =
+      "Namaste! I'm Sneha from Tropicano Mango Rush Support. Kya aap Hindi mein baat karna chahenge ya English mein? / Would you like to continue in Hindi or English?";
+    conversationHistory.push({ role: "assistant", content: initialGreeting });
 
     // Show Chat Transcript Overlay below Call Indicator
     const chatOverlay = document.getElementById("voiceCallChatOverlay");
@@ -1520,11 +1691,13 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
         if (!text || !voiceCallActive) return;
         fallbackInput.value = "";
         if (voiceSpeechRecognition) {
-          try { voiceSpeechRecognition.stop(); } catch(e) {}
+          try {
+            voiceSpeechRecognition.stop();
+          } catch (e) {}
         }
         appendVoiceChatMessage("You", text, "user");
         setVoiceStatus("speaking");
-        callGroqAPI(text).then(reply => {
+        callGroqAPI(text).then((reply) => {
           appendVoiceChatMessage("Priya", reply, "agent");
           speakText(reply, () => {
             if (reply.includes("[CALL_END]")) endVoiceCall(false);
@@ -1568,29 +1741,38 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
 
     try {
       console.log("🔄 Calling Groq API directly from main.js...");
-      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${GROQ_API_KEY}`
+      const response = await fetch(
+        "https://api.groq.com/openai/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${GROQ_API_KEY}`,
+          },
+          body: JSON.stringify({
+            model: "llama-3.3-70b-versatile",
+            messages: conversationHistory,
+            max_tokens: 100,
+            temperature: 0.7,
+          }),
         },
-        body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
-          messages: conversationHistory,
-          max_tokens: 100,
-          temperature: 0.7
-        })
-      });
+      );
 
       if (response.ok) {
         const data = await response.json();
-        const reply = data.choices?.[0]?.message?.content || "I understand. Let me note that for you.";
+        const reply =
+          data.choices?.[0]?.message?.content ||
+          "I understand. Let me note that for you.";
         conversationHistory.push({ role: "assistant", content: reply });
         console.log("🟢 Direct Groq API connection successful!");
         return reply;
       }
       const errText = await response.text();
-      console.error("🔴 Direct Groq API failed with status:", response.status, errText);
+      console.error(
+        "🔴 Direct Groq API failed with status:",
+        response.status,
+        errText,
+      );
       throw new Error(`Groq API Error ${response.status}: ${errText}`);
     } catch (err) {
       console.warn("⚠️ Groq direct API call failed:", err.message);
@@ -1599,29 +1781,39 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       const localKey = localStorage.getItem("GROQ_API_KEY");
       if (localKey && localKey.trim()) {
         try {
-          console.log("🔄 Attempting direct connection to Groq API using silent local GROQ_API_KEY...");
-          const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${localKey.trim()}`
+          console.log(
+            "🔄 Attempting direct connection to Groq API using silent local GROQ_API_KEY...",
+          );
+          const response = await fetch(
+            "https://api.groq.com/openai/v1/chat/completions",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localKey.trim()}`,
+              },
+              body: JSON.stringify({
+                model: "llama-3.3-70b-versatile",
+                messages: conversationHistory,
+                max_tokens: 100,
+                temperature: 0.7,
+              }),
             },
-            body: JSON.stringify({
-              model: "llama-3.3-70b-versatile",
-              messages: conversationHistory,
-              max_tokens: 100,
-              temperature: 0.7
-            })
-          });
+          );
 
           if (response.ok) {
             const data = await response.json();
-            const reply = data.choices?.[0]?.message?.content || "I understand. Let me note that for you.";
+            const reply =
+              data.choices?.[0]?.message?.content ||
+              "I understand. Let me note that for you.";
             conversationHistory.push({ role: "assistant", content: reply });
             console.log("🟢 Direct Groq API connection successful!");
             return reply;
           }
-          console.error("🔴 Direct Groq API failed with status:", response.status);
+          console.error(
+            "🔴 Direct Groq API failed with status:",
+            response.status,
+          );
         } catch (directErr) {
           console.error("🔴 Direct Groq API request failed:", directErr);
         }
@@ -1633,11 +1825,11 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
         "Namaste! I'm Sneha from Tropicano Mango Rush Support. I'm sorry to hear you had trouble claiming your reward. Could you tell me the name of the retailer?",
         "I understand. That's definitely something we want to look into. Was this your first time visiting this store?",
         "Got it. We've registered your complaint and our team will follow up with the retailer shortly.",
-        "Thank you so much for bringing this to our attention. Thank you for calling Tropicano Mango Rush Support. We'll resolve this for you. Have a great day! [CALL_END]"
+        "Thank you so much for bringing this to our attention. Thank you for calling Tropicano Mango Rush Support. We'll resolve this for you. Have a great day! [CALL_END]",
       ];
       const idx = Math.min(
-        conversationHistory.filter(m => m.role === "assistant").length,
-        fallbacks.length - 1
+        conversationHistory.filter((m) => m.role === "assistant").length,
+        fallbacks.length - 1,
       );
       const reply = fallbacks[idx];
       conversationHistory.push({ role: "assistant", content: reply });
@@ -1648,7 +1840,10 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
   function speakText(text, onDone) {
     if (!voiceCallActive) return;
     const cleanText = text.replace("[CALL_END]", "").trim();
-    if (!cleanText) { if (onDone) onDone(); return; }
+    if (!cleanText) {
+      if (onDone) onDone();
+      return;
+    }
 
     window.speechSynthesis.cancel(); // stop any current speech
 
@@ -1661,17 +1856,28 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
 
       // Pick a female English voice
       const voices = window.speechSynthesis.getVoices();
-      const preferred = voices.find(v =>
-        (v.name.includes("Samantha") || v.name.includes("Google UK English Female") ||
-         v.name.includes("Microsoft Zira") || v.name.includes("Karen") || v.name.includes("Moira") ||
-         (v.name.toLowerCase().includes("female") && v.lang.startsWith("en")))
-      ) || voices.find(v => v.lang.startsWith("en-")) || voices[0];
+      const preferred =
+        voices.find(
+          (v) =>
+            v.name.includes("Samantha") ||
+            v.name.includes("Google UK English Female") ||
+            v.name.includes("Microsoft Zira") ||
+            v.name.includes("Karen") ||
+            v.name.includes("Moira") ||
+            (v.name.toLowerCase().includes("female") &&
+              v.lang.startsWith("en")),
+        ) ||
+        voices.find((v) => v.lang.startsWith("en-")) ||
+        voices[0];
       if (preferred) utterance.voice = preferred;
 
       setVoiceStatus("speaking");
 
       const keepAlive = setInterval(() => {
-        if (!window.speechSynthesis.speaking) { clearInterval(keepAlive); return; }
+        if (!window.speechSynthesis.speaking) {
+          clearInterval(keepAlive);
+          return;
+        }
         window.speechSynthesis.pause();
         window.speechSynthesis.resume();
       }, 10000);
@@ -1696,20 +1902,25 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
         window.speechSynthesis.onvoiceschanged = null;
         doSpeak();
       };
-      setTimeout(() => { if (voiceCallActive) doSpeak(); }, 500);
+      setTimeout(() => {
+        if (voiceCallActive) doSpeak();
+      }, 500);
     }
   }
 
   function listenForUserSpeech() {
     if (!voiceCallActive) return;
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
 
     setVoiceStatus("listening");
 
     if (SpeechRecognition) {
       if (voiceSpeechRecognition) {
-        try { voiceSpeechRecognition.stop(); } catch(e) {}
+        try {
+          voiceSpeechRecognition.stop();
+        } catch (e) {}
       }
       voiceSpeechRecognition = new SpeechRecognition();
       voiceSpeechRecognition.lang = "en-IN";
@@ -1718,9 +1929,13 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       voiceSpeechRecognition.maxAlternatives = 1;
 
       let silenceTimeout = setTimeout(() => {
-        try { voiceSpeechRecognition.stop(); } catch(e) {}
+        try {
+          voiceSpeechRecognition.stop();
+        } catch (e) {}
         setVoiceStatus("speaking");
-        callGroqAPI("[IVR SYSTEM: Customer gave no speech input for 10 seconds. In 1 short polite sentence, repeat your last question or check if they are still on the line.]").then(reply => {
+        callGroqAPI(
+          "[IVR SYSTEM: Customer gave no speech input for 10 seconds. In 1 short polite sentence, repeat your last question or check if they are still on the line.]",
+        ).then((reply) => {
           appendVoiceChatMessage("Priya", reply, "agent");
           speakText(reply, () => {
             if (reply.includes("[CALL_END]")) endVoiceCall(false);
@@ -1734,7 +1949,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
         const transcript = event.results[0][0].transcript;
         appendVoiceChatMessage("You", transcript, "user");
         setVoiceStatus("speaking");
-        callGroqAPI(transcript).then(reply => {
+        callGroqAPI(transcript).then((reply) => {
           appendVoiceChatMessage("Priya", reply, "agent");
           speakText(reply, () => {
             if (reply.includes("[CALL_END]")) endVoiceCall(false);
@@ -1746,7 +1961,11 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       voiceSpeechRecognition.onerror = (e) => {
         clearTimeout(silenceTimeout);
         console.warn("Speech recognition error:", e.error);
-        if (e.error === "no-speech" || e.error === "network" || e.error === "not-allowed") {
+        if (
+          e.error === "no-speech" ||
+          e.error === "network" ||
+          e.error === "not-allowed"
+        ) {
           // Keep call alive and let user type or retry listening
           setTimeout(() => {
             if (voiceCallActive) listenForUserSpeech();
@@ -1756,7 +1975,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
 
       try {
         voiceSpeechRecognition.start();
-      } catch(startErr) {
+      } catch (startErr) {
         console.warn("SpeechRecognition start error:", startErr);
       }
     }
@@ -1769,7 +1988,8 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
     const statusEl = document.getElementById("voiceCallStatus");
     if (statusEl) {
       if (status === "speaking") statusEl.textContent = "Agent speaking...";
-      else if (status === "listening") statusEl.textContent = "Listening (or type below)...";
+      else if (status === "listening")
+        statusEl.textContent = "Listening (or type below)...";
       else statusEl.textContent = "On call";
     }
     const wave = indicator.querySelector(".voice-waveform");
@@ -1783,7 +2003,9 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
     window.speechSynthesis.cancel();
     stopRingtone();
     if (voiceSpeechRecognition) {
-      try { voiceSpeechRecognition.stop(); } catch(e) {}
+      try {
+        voiceSpeechRecognition.stop();
+      } catch (e) {}
       voiceSpeechRecognition = null;
     }
     conversationHistory = [];
@@ -1796,19 +2018,27 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       indicator.classList.add("call-ended");
       const statusEl = document.getElementById("voiceCallStatus");
       if (statusEl) statusEl.textContent = "Call ended";
-      setTimeout(() => {
-        indicator.classList.remove("show", "call-ended");
-        setTimeout(() => { indicator.style.display = "none"; }, 600);
-      }, immediate ? 500 : 2000);
+      setTimeout(
+        () => {
+          indicator.classList.remove("show", "call-ended");
+          setTimeout(() => {
+            indicator.style.display = "none";
+          }, 600);
+        },
+        immediate ? 500 : 2000,
+      );
     }
 
     // Play reverse video transition, then show popup card and resume background music
-    setTimeout(() => {
-      playVideoInReverse("assets/video-initial.mp4", () => {
-        resumeBackgroundMedia();
-        if (popup) popup.style.display = "block";
-      });
-    }, immediate ? 600 : 2200);
+    setTimeout(
+      () => {
+        playVideoInReverse("assets/video-initial.mp4", () => {
+          resumeBackgroundMedia();
+          if (popup) popup.style.display = "block";
+        });
+      },
+      immediate ? 600 : 2200,
+    );
   }
 
   function endFakeCall() {
@@ -2021,7 +2251,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
             console.warn("Video end play interrupted or blocked:", err);
           });
         },
-      }
+      },
     );
   }
 
@@ -2032,7 +2262,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       gsap.fromTo(copyCodeBtn, { scale: 0.8 }, { scale: 1, duration: 0.2 });
       const originalText = uniqueCodeText.textContent;
       uniqueCodeText.textContent = "COPIED! ✓";
-      
+
       const tooltip = document.getElementById("copyTooltip");
       if (tooltip) {
         tooltip.classList.add("show");
@@ -2057,7 +2287,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
         let codeStr = "";
         for (let i = 0; i < 5; i++) {
           codeStr += codeChars.charAt(
-            Math.floor(Math.random() * codeChars.length)
+            Math.floor(Math.random() * codeChars.length),
           );
         }
         uniqueCodeText.textContent = `TOFFEE-${codeStr}`;
@@ -2065,9 +2295,13 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
 
       // 2. Re-initialize canvas scratch overlay
       initScratchCardCanvas();
-      
+
       // 3. Play a small feedback animation on the button
-      gsap.fromTo(resetScratchBtn, { scale: 0.9, rotate: 0 }, { scale: 1, rotate: 360, duration: 0.4 });
+      gsap.fromTo(
+        resetScratchBtn,
+        { scale: 0.9, rotate: 0 },
+        { scale: 1, rotate: 360, duration: 0.4 },
+      );
     });
   }
 
@@ -2160,7 +2394,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
               console.warn("Ending video play failed:", err);
             });
           },
-        }
+        },
       );
     }
   }
@@ -2210,14 +2444,25 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
         // GSAP Pop Scale Animation on filled stars
         starBtns.forEach((s, idx) => {
           if (idx < currentSelectedRating) {
-            gsap.fromTo(s, { scale: 0.7 }, { scale: 1.25, duration: 0.25, yoyo: true, repeat: 1, ease: "back.out(2)" });
+            gsap.fromTo(
+              s,
+              { scale: 0.7 },
+              {
+                scale: 1.25,
+                duration: 0.25,
+                yoyo: true,
+                repeat: 1,
+                ease: "back.out(2)",
+              },
+            );
           }
         });
 
         // Trigger Confetti Pop Effect if 5 Stars
         if (currentSelectedRating === 5) {
           if (typeof fireGoldenConfetti === "function") fireGoldenConfetti();
-          if (typeof triggerPaytmCashbackNotification === "function") triggerPaytmCashbackNotification();
+          if (typeof triggerPaytmCashbackNotification === "function")
+            triggerPaytmCashbackNotification();
         }
 
         // Thank-you feedback message display
@@ -2227,13 +2472,18 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
             "Thank you! Rated 2 Stars",
             "Thank you! Rated 3 Stars",
             "Thank you! Rated 4 Stars ⭐",
-            "Thank you! 5 Star Golden Experience! ✨"
+            "Thank you! 5 Star Golden Experience! ✨",
           ];
-          ratingFeedbackText.textContent = feedbackMsg[currentSelectedRating - 1] || "Thank you for rating!";
+          ratingFeedbackText.textContent =
+            feedbackMsg[currentSelectedRating - 1] || "Thank you for rating!";
           ratingFeedbackText.style.color = "#143d10";
           ratingFeedbackText.style.fontWeight = "600";
 
-          gsap.fromTo(ratingFeedbackText, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" });
+          gsap.fromTo(
+            ratingFeedbackText,
+            { scale: 0.8, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" },
+          );
         }
       });
     });
@@ -2270,7 +2520,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
 
       if (!mobileRegex.test(mobileVal)) {
         alert(
-          "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9."
+          "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.",
         );
         if (mobileInput) mobileInput.focus();
         return;
@@ -2298,11 +2548,11 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
 
     const fruits = [
       "assets/fruits/0001",
-      "assets/fruits/0002.png",
-      "assets/fruits/0003.png",
-      "assets/fruits/0004.png",
-      "assets/fruits/0005.png",
-      "assets/fruits/0007.png"
+      "assets/fruits/0002.webp",
+      "assets/fruits/0003.webp",
+      "assets/fruits/0004.webp",
+      "assets/fruits/0005.webp",
+      "assets/fruits/0007.webp",
     ];
 
     // Find the current coordinates of the pack image on screen
@@ -2340,7 +2590,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       const speed = 2.0 + Math.random() * 3.5; // High velocity blast
       Body.setVelocity(particle, {
         x: Math.cos(angle) * speed,
-        y: Math.sin(angle) * speed
+        y: Math.sin(angle) * speed,
       });
 
       Body.setAngularVelocity(particle, (Math.random() - 0.5) * 0.3);
@@ -2401,21 +2651,62 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
     }
 
     // Represent the HTML popup-card as a static rectangular collider body centered on screen
-    const popupCollider = Bodies.rectangle(width / 2, height / 2, popupWidth, popupHeight, {
-      isStatic: true,
-      restitution: 1.1, // Highly bouncy
-      friction: 0,
-      render: { fillStyle: "transparent" }
-    });
+    const popupCollider = Bodies.rectangle(
+      width / 2,
+      height / 2,
+      popupWidth,
+      popupHeight,
+      {
+        isStatic: true,
+        restitution: 1.1, // Highly bouncy
+        friction: 0,
+        render: { fillStyle: "transparent" },
+      },
+    );
 
     // Create boundaries to keep floaters screen-locked
-    const wallOptions = { isStatic: true, restitution: 1.0, friction: 0, render: { fillStyle: "transparent" } };
-    const ceiling = Bodies.rectangle(width / 2, -20, width * 2, 40, wallOptions);
-    const ground = Bodies.rectangle(width / 2, height + 20, width * 2, 40, wallOptions);
-    const leftWall = Bodies.rectangle(-20, height / 2, 40, height * 2, wallOptions);
-    const rightWall = Bodies.rectangle(width + 20, height / 2, 40, height * 2, wallOptions);
-    
-    Composite.add(engine.world, [ceiling, ground, leftWall, rightWall, popupCollider]);
+    const wallOptions = {
+      isStatic: true,
+      restitution: 1.0,
+      friction: 0,
+      render: { fillStyle: "transparent" },
+    };
+    const ceiling = Bodies.rectangle(
+      width / 2,
+      -20,
+      width * 2,
+      40,
+      wallOptions,
+    );
+    const ground = Bodies.rectangle(
+      width / 2,
+      height + 20,
+      width * 2,
+      40,
+      wallOptions,
+    );
+    const leftWall = Bodies.rectangle(
+      -20,
+      height / 2,
+      40,
+      height * 2,
+      wallOptions,
+    );
+    const rightWall = Bodies.rectangle(
+      width + 20,
+      height / 2,
+      40,
+      height * 2,
+      wallOptions,
+    );
+
+    Composite.add(engine.world, [
+      ceiling,
+      ground,
+      leftWall,
+      rightWall,
+      popupCollider,
+    ]);
 
     const mouse = Mouse.create(render.canvas);
     const mouseConstraint = MouseConstraint.create(engine, {
@@ -2433,11 +2724,11 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
 
     const fruits = [
       "assets/fruits/0001",
-      "assets/fruits/0002.png",
-      "assets/fruits/0003.png",
-      "assets/fruits/0004.png",
-      "assets/fruits/0005.png",
-      "assets/fruits/0007.png"
+      "assets/fruits/0002.webp",
+      "assets/fruits/0003.webp",
+      "assets/fruits/0004.webp",
+      "assets/fruits/0005.webp",
+      "assets/fruits/0007.webp",
     ];
 
     // Shuffle the fruits array to ensure diverse textures are spawned in random order
@@ -2446,7 +2737,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
     // Increase Matter object quantity/quality on desktop screen widths (>768px)
     const isDesktop = window.innerWidth > 768;
     const spawnCount = isDesktop ? 24 : 10;
-    
+
     const zones = [
       { xRange: [0.03, 0.22], yRange: [0.05, 0.28] }, // Top Left
       { xRange: [0.03, 0.22], yRange: [0.35, 0.65] }, // Middle Left Outer
@@ -2455,7 +2746,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       { xRange: [0.28, 0.72], yRange: [0.82, 0.95] }, // Bottom Margin Outer Strip
       { xRange: [0.78, 0.97], yRange: [0.05, 0.28] }, // Top Right
       { xRange: [0.78, 0.97], yRange: [0.35, 0.65] }, // Middle Right Outer
-      { xRange: [0.78, 0.97], yRange: [0.72, 0.95] }  // Bottom Right
+      { xRange: [0.78, 0.97], yRange: [0.72, 0.95] }, // Bottom Right
     ];
 
     const shuffledZones = zones.sort(() => Math.random() - 0.5);
@@ -2470,8 +2761,12 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
     for (let i = 0; i < spawnCount; i++) {
       setTimeout(() => {
         const zone = shuffledZones[i % shuffledZones.length];
-        const startX = (Math.random() * (zone.xRange[1] - zone.xRange[0]) + zone.xRange[0]) * width;
-        const startY = (Math.random() * (zone.yRange[1] - zone.yRange[0]) + zone.yRange[0]) * height;
+        const startX =
+          (Math.random() * (zone.xRange[1] - zone.xRange[0]) + zone.xRange[0]) *
+          width;
+        const startY =
+          (Math.random() * (zone.yRange[1] - zone.yRange[0]) + zone.yRange[0]) *
+          height;
 
         const radius = 6 + Math.random() * 4;
         const textureSrc = shuffledFruits[i % shuffledFruits.length];
@@ -2496,7 +2791,7 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
         const speed = 0.15 + Math.random() * 0.2;
         Body.setVelocity(toffeeBody, {
           x: Math.cos(angle) * speed,
-          y: Math.sin(angle) * speed
+          y: Math.sin(angle) * speed,
         });
 
         Body.setAngularVelocity(toffeeBody, (Math.random() - 0.5) * 0.02);
@@ -2505,7 +2800,6 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       }, i * 150);
     }
   }
-
 
   /* ---------- 5. CANVAS PARTICLE SYSTEM — REMOVED ---------- */
   /* initParticles and renderParticles removed — video last frame is background */
@@ -2517,7 +2811,14 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
       particleCount: 60,
       spread: 75,
       origin: { y: 0.6 },
-      colors: ["#FF8C00", "#FFD700", "#FFA500", "#2E7D32", "#43A047", "#FFEB3B"],
+      colors: [
+        "#FF8C00",
+        "#FFD700",
+        "#FFA500",
+        "#2E7D32",
+        "#43A047",
+        "#FFEB3B",
+      ],
       disableForReducedMotion: true,
     });
   }
@@ -2651,7 +2952,9 @@ conversationHistory.push({ role: "assistant", content: initialGreeting });
     });
   }
   const btnCustomerJourney = document.getElementById("btnCustomerJourney");
-  const presentationSelectorModal = document.getElementById("presentationSelectorModal");
+  const presentationSelectorModal = document.getElementById(
+    "presentationSelectorModal",
+  );
   if (btnCustomerJourney) {
     btnCustomerJourney.addEventListener("click", () => {
       if (presentationSelectorModal) {

@@ -12,9 +12,12 @@
       content="Tropicano Mango Rush. Indulgent artisanal mango beverage and rewards."
     />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+      rel="stylesheet"
+    />
     <!-- FontAwesome CDN -->
     <link
       rel="stylesheet"
@@ -37,7 +40,7 @@
       <div class="steps-modal-backdrop">
         <!-- First frame image of intro video as living background -->
         <img
-          src="assets/video-initial.png"
+          src="assets/video-initial.webp"
           alt="Video First Frame"
           class="backdrop-first-frame"
         />
@@ -46,20 +49,33 @@
       </div>
       <div class="steps-modal-card">
         <div class="welcome-logo-container">
-          <img src="assets/secondary-pack.png" alt="Toffee Logo" class="welcome-logo-animated" onerror="this.src='assets/toffee.png'" />
+          <img
+            src="assets/secondary-pack.webp"
+            alt="Toffee Logo"
+            class="welcome-logo-animated"
+            onerror="this.src = 'assets/toffee.webp'"
+          />
         </div>
-        <p class="welcome-modal-text">Select a simulation pathway to demonstrate the campaign experience:</p>
-        
+        <p class="welcome-modal-text">
+          Select a simulation pathway to demonstrate the campaign experience:
+        </p>
+
         <div class="welcome-options-container">
           <!-- Option 1: Customer Journey -->
           <button id="btnCustomerJourney" class="btn-option btn-yes">
-            <span><i class="fa-solid fa-users welcome-btn-icon"></i> Customer Journey Demo</span>
+            <span
+              ><i class="fa-solid fa-users welcome-btn-icon"></i> Customer
+              Journey Demo</span
+            >
             <i class="fa-solid fa-chevron-right"></i>
           </button>
-          
+
           <!-- Option 2: Retailer Dashboard -->
           <a href="retailer.html" id="btnRetailerDashboard" class="btn-option">
-            <span><i class="fa-solid fa-store welcome-btn-icon"></i> Retailer Dashboard</span>
+            <span
+              ><i class="fa-solid fa-store welcome-btn-icon"></i> Retailer
+              Dashboard</span
+            >
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </div>
@@ -68,7 +84,11 @@
 
     <!-- Fullscreen QR Code Scanner Overlay -->
     <div id="qrScannerContainer" class="qr-scanner-container">
-      <img src="assets/video-initial.png" alt="Video First Frame" class="backdrop-first-frame" />
+      <img
+        src="assets/video-initial.webp"
+        alt="Video First Frame"
+        class="backdrop-first-frame"
+      />
       <button id="skipQrBtn" class="skip-qr-btn btn-yes">
         Skip <i class="fa-solid fa-chevron-right"></i>
       </button>
@@ -77,9 +97,48 @@
         <p class="qr-subtitle">
           Scan your campaign packaging to unlock the tasting experience.
         </p>
-        <div id="qrReader" class="qr-reader-view" style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #fff; padding: 10px; border-radius: 12px; aspect-ratio: 1; max-width: 250px; margin: 0 auto 16px;">
-          <img src="assets/qr-code.png" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;" />
-          <div class="scanning-laser-line" style="position: absolute; left: 0; right: 0; height: 3px; background: linear-gradient(to right, transparent, #ff3b30, #ff9500, #ff3b30, transparent); box-shadow: 0 0 10px #ff3b30; animation: laserSweep 2s ease-in-out infinite; z-index: 5;"></div>
+        <div
+          id="qrReader"
+          class="qr-reader-view"
+          style="
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            aspect-ratio: 1;
+            max-width: 250px;
+            margin: 0 auto 16px;
+          "
+        >
+          <img
+            src="assets/qr-code.webp"
+            alt="QR Code"
+            style="width: 100%; height: 100%; object-fit: contain"
+          />
+          <div
+            class="scanning-laser-line"
+            style="
+              position: absolute;
+              left: 0;
+              right: 0;
+              height: 3px;
+              background: linear-gradient(
+                to right,
+                transparent,
+                #ff3b30,
+                #ff9500,
+                #ff3b30,
+                transparent
+              );
+              box-shadow: 0 0 10px #ff3b30;
+              animation: laserSweep 2s ease-in-out infinite;
+              z-index: 5;
+            "
+          ></div>
         </div>
         <div id="qrFeedback" class="qr-feedback-hint">
           Camera access required. Scan target: "mohit"
@@ -93,7 +152,7 @@
         muted
         playsinline
         preload="auto"
-        poster="assets/video-initial.png"
+        poster="assets/video-initial.webp"
         src="assets/video-initial.mp4"
       ></video>
     </div>
@@ -105,16 +164,20 @@
         <i class="fa-solid fa-circle-info"></i>
       </button>
 
-      <!-- Fixed Background Image (image-2.png) removed — video last frame is background -->
-
+      <!-- Fixed Background Image (image-2.webp) removed — video last frame is background -->
 
       <!-- Container for Matter.js Physics Canvas -->
       <div id="matterContainer" class="matter-container"></div>
 
       <!-- Premium Glassmorphism Chocolate Card Popup -->
       <div id="popup" class="popup-card">
-<div class="welcome-logo-container">
-          <img src="assets/main-pack.png" alt="Toffee Logo" class="welcome-logo-animated" onerror="this.src='assets/toffee.png'">
+        <div class="welcome-logo-container">
+          <img
+            src="assets/main-pack.webp"
+            alt="Toffee Logo"
+            class="welcome-logo-animated"
+            onerror="this.src = 'assets/toffee.webp'"
+          />
         </div>
 
         <span class="popup-badge">EXCLUSIVITY UNLOCKED</span>
@@ -124,7 +187,7 @@
         </p>
 
         <div class="reward-cards">
-          <img src="assets/discount-card.png" alt="" width="200">
+          <img src="assets/discount-card.webp" alt="" width="200" />
         </div>
 
         <div class="question-box">
@@ -149,30 +212,52 @@
         >
           <i class="fa-solid fa-xmark"></i>
         </button>
-<div class="welcome-logo-container">
-          <img src="assets/not-received.png" alt="Toffee Logo" class="welcome-logo-animated" onerror="this.src='assets/toffee.png'">
+        <div class="welcome-logo-container">
+          <img
+            src="assets/not-received.webp"
+            alt="Toffee Logo"
+            class="welcome-logo-animated"
+            onerror="this.src = 'assets/toffee.webp'"
+          />
         </div>
-        <div class="retailer-header" style="margin-top: 60px;">
-           <h2>Retailer Issue Report</h2>
+        <div class="retailer-header" style="margin-top: 60px">
+          <h2>Retailer Issue Report</h2>
           <p>
-            Please tell us why the retailer was unable to provide your Tropicano Mango Rush reward.
+            Please tell us why the retailer was unable to provide your Tropicano
+            Mango Rush reward.
           </p>
         </div>
 
         <!-- Complaint Checkboxes -->
         <div class="retailer-complaint-list">
           <label class="retailer-checkbox-item" for="chkOutOfStock">
-            <input type="checkbox" id="chkOutOfStock" name="retailerIssue" value="out_of_stock" />
-            <span class="retailer-checkmark"><i class="fa-solid fa-check"></i></span>
+            <input
+              type="checkbox"
+              id="chkOutOfStock"
+              name="retailerIssue"
+              value="out_of_stock"
+            />
+            <span class="retailer-checkmark"
+              ><i class="fa-solid fa-check"></i
+            ></span>
             <span class="retailer-checkbox-text">
               <strong>Out of Stock</strong>
-              <small>Retailer doesn't have Tropicano Mango Rush available</small>
+              <small
+                >Retailer doesn't have Tropicano Mango Rush available</small
+              >
             </span>
           </label>
 
           <label class="retailer-checkbox-item" for="chkRefused">
-            <input type="checkbox" id="chkRefused" name="retailerIssue" value="refused" />
-            <span class="retailer-checkmark"><i class="fa-solid fa-check"></i></span>
+            <input
+              type="checkbox"
+              id="chkRefused"
+              name="retailerIssue"
+              value="refused"
+            />
+            <span class="retailer-checkmark"
+              ><i class="fa-solid fa-check"></i
+            ></span>
             <span class="retailer-checkbox-text">
               <strong>Retailer Refused</strong>
               <small>Merchant declined to honour the reward</small>
@@ -180,8 +265,15 @@
           </label>
 
           <label class="retailer-checkbox-item" for="chkUnaware">
-            <input type="checkbox" id="chkUnaware" name="retailerIssue" value="unaware" />
-            <span class="retailer-checkmark"><i class="fa-solid fa-check"></i></span>
+            <input
+              type="checkbox"
+              id="chkUnaware"
+              name="retailerIssue"
+              value="unaware"
+            />
+            <span class="retailer-checkmark"
+              ><i class="fa-solid fa-check"></i
+            ></span>
             <span class="retailer-checkbox-text">
               <strong>Retailer Unaware</strong>
               <small>Shop owner has no knowledge of this campaign</small>
@@ -189,8 +281,15 @@
           </label>
 
           <label class="retailer-checkbox-item" for="chkClosed">
-            <input type="checkbox" id="chkClosed" name="retailerIssue" value="closed" />
-            <span class="retailer-checkmark"><i class="fa-solid fa-check"></i></span>
+            <input
+              type="checkbox"
+              id="chkClosed"
+              name="retailerIssue"
+              value="closed"
+            />
+            <span class="retailer-checkmark"
+              ><i class="fa-solid fa-check"></i
+            ></span>
             <span class="retailer-checkbox-text">
               <strong>Shop Was Closed</strong>
               <small>Unable to visit — store was not open</small>
@@ -202,12 +301,13 @@
           id="retailerGotItBtn"
           class="btn-option btn-yes submit-redemption-btn"
         >
-          <i class="fa-solid fa-paper-plane" style="margin-right:6px;"></i> Submit Report
+          <i class="fa-solid fa-paper-plane" style="margin-right: 6px"></i>
+          Submit Report
         </button>
       </div>
 
       <!-- iOS Incoming Call Notification Banner -->
-      <div id="iosCallBanner" class="ios-call-banner" style="display:none;">
+      <div id="iosCallBanner" class="ios-call-banner" style="display: none">
         <div class="ios-call-avatar-wrap">
           <div class="ios-call-ring"></div>
           <div class="ios-call-ring"></div>
@@ -220,16 +320,28 @@
           <span class="ios-call-name">Tropicano Mango Rush Support</span>
         </div>
         <div class="ios-call-actions">
-          <button class="ios-call-btn ios-call-decline" id="iosDeclineBtn" aria-label="Decline call">
+          <button
+            class="ios-call-btn ios-call-decline"
+            id="iosDeclineBtn"
+            aria-label="Decline call"
+          >
             <i class="fa-solid fa-phone-slash"></i>
           </button>
-          <button class="ios-call-btn ios-call-accept" id="iosAcceptBtn" aria-label="Accept call">
+          <button
+            class="ios-call-btn ios-call-accept"
+            id="iosAcceptBtn"
+            aria-label="Accept call"
+          >
             <i class="fa-solid fa-phone"></i>
           </button>
         </div>
       </div>
       <!-- Voice Call Indicator Pill (shows during active voice IVR) -->
-      <div id="voiceCallIndicator" class="voice-call-indicator" style="display:none;">
+      <div
+        id="voiceCallIndicator"
+        class="voice-call-indicator"
+        style="display: none"
+      >
         <div class="voice-call-avatar">
           <i class="fa-solid fa-headset"></i>
           <span class="voice-live-badge"></span>
@@ -246,28 +358,44 @@
             <span></span><span></span><span></span><span></span><span></span>
           </div>
         </div>
-        <button id="voiceHangupBtn" class="voice-hangup-btn" aria-label="Hang up">
+        <button
+          id="voiceHangupBtn"
+          class="voice-hangup-btn"
+          aria-label="Hang up"
+        >
           <i class="fa-solid fa-phone-slash"></i>
         </button>
       </div>
 
       <!-- Live Voice Call Chat Box (renders transcript below call) -->
-      <div id="voiceCallChatOverlay" class="voice-call-chat-overlay" style="display:none !important;">
+      <div
+        id="voiceCallChatOverlay"
+        class="voice-call-chat-overlay"
+        style="display: none !important"
+      >
         <div class="voice-chat-header">
           <span><i class="fa-solid fa-comments"></i> Live Call Transcript</span>
-          <span class="voice-chat-subtitle">You can also type your responses below</span>
+          <span class="voice-chat-subtitle"
+            >You can also type your responses below</span
+          >
         </div>
         <div id="voiceChatLog" class="voice-chat-log">
           <!-- Transcripts appended dynamically -->
         </div>
         <div class="voice-fallback-input-bar">
-          <input type="text" id="voiceFallbackText" placeholder="Type your response to Sneha..." />
-          <button id="voiceFallbackSend" aria-label="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+          <input
+            type="text"
+            id="voiceFallbackText"
+            placeholder="Type your response to Sneha..."
+          />
+          <button id="voiceFallbackSend" aria-label="Send message">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
         </div>
       </div>
 
       <!-- Fake Call Overlay (kept for legacy, hidden by default) -->
-      <div id="fakeCallOverlay" class="fake-call-overlay" style="display:none;">
+      <div id="fakeCallOverlay" class="fake-call-overlay" style="display: none">
         <!-- Active Chat Call Screen -->
         <div id="callActive" class="call-active-screen">
           <div class="call-active-header">
@@ -289,7 +417,12 @@
           </div>
 
           <div class="call-input-row" id="callInputRow">
-            <input type="text" id="callUserInput" class="call-user-input" placeholder="Type your reply..." />
+            <input
+              type="text"
+              id="callUserInput"
+              class="call-user-input"
+              placeholder="Type your reply..."
+            />
             <button id="callSendBtn" class="call-send-btn">
               <i class="fa-solid fa-paper-plane"></i>
             </button>
@@ -300,11 +433,15 @@
       <!-- Happy Code Redemption Panel Card (Rendered in same location as popup-card) -->
       <div id="redemptionDrawer" class="popup-card redemption-card-panel">
         <div class="welcome-logo-container">
-          <img src="assets/main-pack.png" alt="Toffee Logo" class="welcome-logo-animated" onerror="this.src='assets/toffee.png'" />
+          <img
+            src="assets/main-pack.webp"
+            alt="Toffee Logo"
+            class="welcome-logo-animated"
+            onerror="this.src = 'assets/toffee.webp'"
+          />
         </div>
 
-
-        <div class="drawer-header" style="margin-top: 60px;">
+        <div class="drawer-header" style="margin-top: 60px">
           <h2>Redeem Happy Code</h2>
           <p>Enter your details below to claim your reward instantly</p>
         </div>
@@ -317,16 +454,16 @@
           <!-- Customer Name Field -->
           <div class="form-group">
             <label for="nameInput">Enter Customer Name</label>
-            <div class="input-wrapper" style="position: relative;">
+            <div class="input-wrapper" style="position: relative">
               <i class="fa-solid fa-user input-icon"></i>
               <input type="text" id="nameInput" placeholder="Name" required />
             </div>
           </div>
- 
+
           <!-- Mobile Number Field -->
           <div class="form-group">
             <label for="mobileInput">Enter Customer Mobile No.</label>
-            <div class="input-wrapper" style="position: relative;">
+            <div class="input-wrapper" style="position: relative">
               <i class="fa-solid fa-mobile-screen input-icon"></i>
               <input
                 type="tel"
@@ -336,11 +473,62 @@
                 pattern="^[6-9]\d{9}$"
                 title="Please enter a valid 10-digit mobile number"
                 required
-                style="padding-right: 90px;"
+                style="padding-right: 90px"
               />
-              <div class="otp-actions-container" style="position: absolute; right: 6px; display: flex; align-items: center;">
-                <button type="button" id="sendOtpBtn" class="btn-option" style="height: 24px; padding: 5px 10px; font-size: 10px; margin: 0; background: conic-gradient(from 231.52deg at 51.59% 60.57%, #F1A202 0deg, #FCBF07 65.99deg, #FCC111 189.52deg, #F1A202 360deg); color: #3B1800; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; box-shadow: inset 0px 1px 1px #FED845;">Send OTP</button>
-                <button type="button" id="resendOtpBtn" class="btn-option" style="display: none; padding: 5px 10px; font-size: 10px; margin: 0; color: #291300; border: 1px solid rgba(41,19,0,0.2); border-radius: 8px; font-weight: 700; cursor: pointer;" disabled>Resend OTP</button>
+              <div
+                class="otp-actions-container"
+                style="
+                  position: absolute;
+                  right: 6px;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <button
+                  type="button"
+                  id="sendOtpBtn"
+                  class="btn-option"
+                  style="
+                    height: 24px;
+                    padding: 5px 10px;
+                    font-size: 10px;
+                    margin: 0;
+                    background: conic-gradient(
+                      from 231.52deg at 51.59% 60.57%,
+                      #f1a202 0deg,
+                      #fcbf07 65.99deg,
+                      #fcc111 189.52deg,
+                      #f1a202 360deg
+                    );
+                    color: #3b1800;
+                    border-radius: 8px;
+                    border: none;
+                    font-weight: 700;
+                    cursor: pointer;
+                    box-shadow: inset 0px 1px 1px #fed845;
+                  "
+                >
+                  Send OTP
+                </button>
+                <button
+                  type="button"
+                  id="resendOtpBtn"
+                  class="btn-option"
+                  style="
+                    display: none;
+                    padding: 5px 10px;
+                    font-size: 10px;
+                    margin: 0;
+                    color: #291300;
+                    border: 1px solid rgba(41, 19, 0, 0.2);
+                    border-radius: 8px;
+                    font-weight: 700;
+                    cursor: pointer;
+                  "
+                  disabled
+                >
+                  Resend OTP
+                </button>
               </div>
             </div>
           </div>
@@ -348,8 +536,12 @@
           <!-- Happy Code Field -->
           <div class="form-group">
             <label>Enter Happy Code</label>
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div class="happy-code-container" id="happyCodeContainer" style="flex: 1;">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <div
+                class="happy-code-container"
+                id="happyCodeContainer"
+                style="flex: 1"
+              >
                 <input
                   type="text"
                   class="code-box"
@@ -424,19 +616,33 @@
       </div>
 
       <!-- Success Redemption Panel Card (Redesigned as Premium Ticket) -->
-      <div id="successDrawer" class="popup-card success-card-panel premium-ticket-card">
+      <div
+        id="successDrawer"
+        class="popup-card success-card-panel premium-ticket-card"
+      >
         <!-- Ticket Top Section -->
         <div class="ticket-section-top">
           <div class="success-award-banner-container">
             <div class="d-block success-img-wrap">
-              <img src="assets/sucess.png" alt="Success Award" class="success-award-under" onerror="this.style.display='none'" />
+              <img
+                src="assets/sucess.webp"
+                alt="Success Award"
+                class="success-award-under"
+                onerror="this.style.display = 'none'"
+              />
             </div>
             <div class="welcome-logo-container value-img-wrap">
-              <img src="assets/value.png" alt="Value Award" class="value-award-pop" onerror="this.style.display='none'" />
+              <img
+                src="assets/value.webp"
+                alt="Value Award"
+                class="value-award-pop"
+                onerror="this.style.display = 'none'"
+              />
             </div>
           </div>
-          <p class="popup-subtitle" style="margin-top: 100px;">
-            You've unlocked an exclusive Tropicano Mango Rush tasting experience.
+          <p class="popup-subtitle" style="margin-top: 100px">
+            You've unlocked an exclusive Tropicano Mango Rush tasting
+            experience.
           </p>
 
           <div class="retail-outlet-card">
@@ -470,7 +676,8 @@
         <!-- Ticket Bottom Section -->
         <div class="ticket-section-bottom">
           <p class="claim-message-text">
-            Show this screen to the retailer to claim your complimentary Tropicano Mango Rush.
+            Show this screen to the retailer to claim your complimentary
+            Tropicano Mango Rush.
           </p>
 
           <!-- Interactive Scratch Card Section -->
@@ -478,7 +685,7 @@
             <span class="code-title">Scratch to Avail Award</span>
             <div class="scratch-card-container" id="scratchContainer">
               <!-- Hidden Secret Code Underneath -->
-              <div class="scratch-secret-content" style="position: relative;">
+              <div class="scratch-secret-content" style="position: relative">
                 <span id="uniqueCodeText" class="code-text">MANGO-XXXX</span>
                 <button
                   id="copyCodeBtn"
@@ -487,13 +694,16 @@
                 >
                   <i class="fa-regular fa-copy"></i>
                 </button>
-                <div id="copyTooltip" class="copy-tooltip">Share this with your retailer to avail cashback</div>
+                <div id="copyTooltip" class="copy-tooltip">
+                  Share this with your retailer to avail cashback
+                </div>
               </div>
               <!-- Canvas Overlay that gets scratched off -->
               <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
             </div>
             <p class="code-instruction-text">
-              Scratch the gold card above to reveal your code & show to retailer!
+              Scratch the gold card above to reveal your code & show to
+              retailer!
             </p>
           </div>
 
@@ -507,9 +717,13 @@
       </div>
 
       <!-- Follow Us & Rating Social Modal Card (Minimal Redesign) -->
-      <div id="socialRatingModal" class="popup-card social-rating-card-panel" style="display: none;">
+      <div
+        id="socialRatingModal"
+        class="popup-card social-rating-card-panel"
+        style="display: none"
+      >
         <!-- Top Header Area -->
-        <div class="social-modal-header" style="margin-block: 40px;">
+        <div class="social-modal-header" style="margin-block: 40px">
           <h2 class="social-modal-title">Join Our Community</h2>
           <p class="social-modal-subtitle">
             Rate your tasting experience &amp; connect with us!
@@ -520,52 +734,99 @@
         <div class="rating-minimal-box">
           <span class="rating-minimal-label">Experience Rating</span>
           <div class="star-rating-wrap" id="starRatingWrap">
-            <button type="button" class="star-btn" data-value="1" aria-label="1 star">
+            <button
+              type="button"
+              class="star-btn"
+              data-value="1"
+              aria-label="1 star"
+            >
               <i class="fa-solid fa-star"></i>
             </button>
-            <button type="button" class="star-btn" data-value="2" aria-label="2 stars">
+            <button
+              type="button"
+              class="star-btn"
+              data-value="2"
+              aria-label="2 stars"
+            >
               <i class="fa-solid fa-star"></i>
             </button>
-            <button type="button" class="star-btn" data-value="3" aria-label="3 stars">
+            <button
+              type="button"
+              class="star-btn"
+              data-value="3"
+              aria-label="3 stars"
+            >
               <i class="fa-solid fa-star"></i>
             </button>
-            <button type="button" class="star-btn" data-value="4" aria-label="4 stars">
+            <button
+              type="button"
+              class="star-btn"
+              data-value="4"
+              aria-label="4 stars"
+            >
               <i class="fa-solid fa-star"></i>
             </button>
-            <button type="button" class="star-btn" data-value="5" aria-label="5 stars">
+            <button
+              type="button"
+              class="star-btn"
+              data-value="5"
+              aria-label="5 stars"
+            >
               <i class="fa-solid fa-star"></i>
             </button>
           </div>
-          <span id="ratingFeedbackText" class="rating-feedback-badge">Tap to rate</span>
+          <span id="ratingFeedbackText" class="rating-feedback-badge"
+            >Tap to rate</span
+          >
         </div>
 
         <!-- Minimal 2x2 Grid Social Channels -->
-        <div class="social-channels-container" style="margin: 30px;">
+        <div class="social-channels-container" style="margin: 30px">
           <div class="channels-title-row">
             <span class="channels-label">Official Channels</span>
           </div>
 
           <div class="social-cards-grid">
             <!-- Instagram -->
-            <a href="https://instagram.com" target="_blank" class="social-tile-card" title="Follow on Instagram">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              class="social-tile-card"
+              title="Follow on Instagram"
+            >
               <i class="fa-brands fa-instagram"></i>
               <span class="tile-platform">Instagram</span>
             </a>
 
             <!-- YouTube -->
-            <a href="https://youtube.com" target="_blank" class="social-tile-card" title="Subscribe on YouTube">
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              class="social-tile-card"
+              title="Subscribe on YouTube"
+            >
               <i class="fa-brands fa-youtube"></i>
               <span class="tile-platform">YouTube</span>
             </a>
 
             <!-- Facebook -->
-            <a href="https://facebook.com" target="_blank" class="social-tile-card" title="Join on Facebook">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              class="social-tile-card"
+              title="Join on Facebook"
+            >
               <i class="fa-brands fa-facebook-f"></i>
               <span class="tile-platform">Facebook</span>
             </a>
 
             <!-- Twitter / X -->
-            <a href="https://x.com" target="_blank" class="social-tile-card" title="Follow on X">
+            <a
+              href="https://x.com"
+              target="_blank"
+              class="social-tile-card"
+              title="Follow on X"
+            >
               <i class="fa-brands fa-x-twitter"></i>
               <span class="tile-platform">X</span>
             </a>
@@ -575,7 +836,10 @@
         <!-- Minimal Perk Note -->
         <div class="community-perk-banner">
           <i class="fa-solid fa-gift"></i>
-          <span class="perk-desc">Tag <strong>#TropicanoMangoRush</strong> on IG to win giveaways!</span>
+          <span class="perk-desc"
+            >Tag <strong>#TropicanoMangoRush</strong> on IG to win
+            giveaways!</span
+          >
         </div>
 
         <!-- Submit Button -->
@@ -623,14 +887,20 @@
                 <i class="fa-solid fa-fingerprint meta-icon"></i>
                 <span class="meta-label">Redemption ID</span>
               </div>
-              <span id="warnRedeemCode" class="meta-val code-val">LUV-X7H9K</span>
+              <span id="warnRedeemCode" class="meta-val code-val"
+                >LUV-X7H9K</span
+              >
             </div>
             <div class="meta-row status-row">
               <div class="meta-label-group">
-                <i class="fa-solid fa-hourglass-half meta-icon highlight-icon"></i>
+                <i
+                  class="fa-solid fa-hourglass-half meta-icon highlight-icon"
+                ></i>
                 <span class="meta-label">Reset Status</span>
               </div>
-              <span id="warnResetTimer" class="meta-val highlight-val">Resets in 28 Days</span>
+              <span id="warnResetTimer" class="meta-val highlight-val"
+                >Resets in 28 Days</span
+              >
             </div>
           </div>
 
@@ -655,26 +925,30 @@
       <div class="steps-modal-backdrop" id="stepsModalBackdrop"></div>
       <div class="steps-modal-card">
         <div class="steps-toffee-package-wrapper">
-          <img src="assets/packet.png" class="steps-toffee-package" alt="Tropicano Mango Rush Pack" />
+          <img
+            src="assets/packet.webp"
+            class="steps-toffee-package"
+            alt="Tropicano Mango Rush Pack"
+          />
         </div>
- 
+
         <div class="steps-header">
           <h2>How It Works</h2>
           <p>Follow these quick steps to claim your reward</p>
         </div>
- 
+
         <div class="steps-list">
           <div class="step-item">
             <div class="step-number">1</div>
             <div class="step-content">
               <h3>Scan the QR Code</h3>
               <p>
-                Scan the QR code on your Tropicano Mango Rush pack to access the cashback
-                registration page.
+                Scan the QR code on your Tropicano Mango Rush pack to access the
+                cashback registration page.
               </p>
             </div>
           </div>
- 
+
           <div class="step-item">
             <div class="step-number">2</div>
             <div class="step-content">
@@ -685,7 +959,7 @@
               </p>
             </div>
           </div>
- 
+
           <div class="step-item">
             <div class="step-number">3</div>
             <div class="step-content">
@@ -696,14 +970,14 @@
               </p>
             </div>
           </div>
- 
+
           <div class="step-item">
             <div class="step-number">4</div>
             <div class="step-content">
               <h3>Receive Instant Cashback</h3>
               <p>
-                Once your code is verified, your cashback is processed instantly and
-                credited as per the offer terms.
+                Once your code is verified, your cashback is processed instantly
+                and credited as per the offer terms.
               </p>
             </div>
           </div>
