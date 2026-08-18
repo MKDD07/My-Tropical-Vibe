@@ -441,21 +441,6 @@ h6 {
   opacity: 0;
 }
 
-/* Glass Bottle neck rib highlight on all popup cards */
-.popup-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90px;
-  height: 24px;
-  background: rgba(255, 140, 0, 0.2);
-  border-bottom: 2px solid rgba(255, 167, 38, 0.4);
-  border-radius: 0 0 20px 20px;
-  z-index: 1;
-}
-
 /* Glass shine gradient overlay on all popup cards */
 
 /* Panel Cards hidden by default until switched */
