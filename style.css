@@ -2736,6 +2736,14 @@ background: conic-gradient(
   left: 0;
   transform: translateX(-50%);
 }
+@media (max-width: 576px)
+{
+  .welcome-logo-container {
+  top: -110px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+}
 .success-award-banner-container .welcome-logo-container {
   top: 0;
 }
