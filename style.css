@@ -435,7 +435,7 @@ h6 {
   border: 1.5px solid rgba(255, 167, 38, 0.35);
   /* Top-rounded cap curves & taper neck bottle outline */
   border-radius: 120px 120px 48px 48px;
-  padding: 28px 36px;
+  padding: 20px 36px;
   text-align: center;
   transform: scale(0) translateY(40px);
   opacity: 0;
