@@ -2558,7 +2558,7 @@ background: conic-gradient(
 }
 
 .welcome-logo-animated {
-  height: 180px;
+  height: 150px;
   width: auto;
   object-fit: contain;
   animation:
