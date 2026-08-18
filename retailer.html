@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Adomantra — Retailer Journey</title>
+    <title>My Tropical Vibe — Retailer Partner Dashboard</title>
 
     <!-- Google Fonts: Google Sans Flex, Outfit & Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -46,12 +46,12 @@
           <img
             id="loaderToffee"
             src="assets/secondary-pack.webp"
-            alt="Tropicano Mango Rush"
+            alt="My Tropical Vibe"
             class="loader-toffee-img"
             onerror="this.src = 'assets/toffee.webp'"
           />
         </div>
-        <div class="loader-title">Tropicano Mango Rush</div>
+        <div class="loader-title">My Tropical Vibe</div>
         <div class="loader-bar-bg">
           <div id="loaderBarFill" class="loader-bar-fill"></div>
         </div>
@@ -87,13 +87,14 @@
       <!-- Looping Blurred & Dimmed Video Background -->
       <div class="bg-video-wrap">
         <video
+          id="bgVideo"
           class="bg-video-el"
           autoplay
           loop
           muted
           playsinline
-          poster="assets/video-initial.webp"
         >
+          <source src="assets/video-initial-916.mp4" type="video/mp4" media="(max-width: 575px)" />
           <source src="assets/video-initial.mp4" type="video/mp4" />
         </video>
         <div class="bg-video-overlay"></div>
@@ -104,12 +105,12 @@
         <div class="header-logo-wrap">
           <img
             src="assets/logo-toffee.webp"
-            alt="Tropicano Mango Rush"
+            alt="My Tropical Vibe"
             class="header-toffee-logo"
             onerror="this.src = 'assets/toffee.webp'"
           />
           <span class="header-title-text"
-            >Tropicano Mango Rush Retailer Portal</span
+            >My Tropical Vibe Retailer Portal</span
           >
         </div>
         <button
@@ -137,7 +138,7 @@
               <div class="toffee-glow"></div>
               <img
                 src="assets/secondary-pack.webp"
-                alt="Tropicano Mango Rush"
+                alt="My Tropical Vibe"
                 class="brand-toffee-img"
                 onerror="this.src = 'assets/toffee.webp'"
               />
@@ -147,8 +148,8 @@
           <!-- Right Form Grid Section -->
           <div class="form-section">
             <div class="form-header-title">
-              <h3>Retailer Verification & Claim</h3>
-              <p>Verify retailer credentials to issue reward confirmation</p>
+              <h3>Retailer Verification &amp; Cashback Claim</h3>
+              <p>Verify retailer credentials to issue instant customer cashback</p>
             </div>
 
             <form onsubmit="return false;">
@@ -243,7 +244,7 @@
                     class="input-error-hint"
                     style="display: none"
                   >
-                    Please fill all form details & 10-digit mobile number
+                    Please fill all form details &amp; 10-digit mobile number
                     starting with 6, 7, 8, or 9
                   </span>
                 </div>
@@ -296,7 +297,7 @@
         <p id="modalMobileDisplay" class="modal-mobile-number"></p>
         <p class="modal-sub">is your mobile number?</p>
         <button type="button" id="modalConfirmBtn" class="modal-btn-confirm">
-          CONFIRM & SEND OTP
+          CONFIRM &amp; SEND OTP
         </button>
       </div>
     </div>
@@ -307,7 +308,7 @@
         <div class="modal-icon-badge">
           <img
             src="assets/logo-toffee.webp"
-            alt="Tropicano Mango Rush Logo"
+            alt="My Tropical Vibe Logo"
             class="modal-toffee-logo-img"
             onerror="this.src = 'assets/toffee.webp'"
           />
@@ -326,7 +327,7 @@
           Enter any 4-digit code (e.g. 1234)
         </div>
         <button type="button" id="verifyOtpBtn" class="modal-btn-confirm">
-          VERIFY & SUBMIT
+          VERIFY &amp; SUBMIT
         </button>
       </div>
     </div>
@@ -346,7 +347,7 @@
           </button>
           <img
             src="assets/logo-toffee.webp"
-            alt="Tropicano Mango Rush"
+            alt="My Tropical Vibe"
             class="dash-topbar-logo"
             onerror="this.src = 'assets/toffee.webp'"
           />
@@ -401,10 +402,10 @@
             <i class="fa-solid fa-users"></i> Customer Claims
           </a>
           <a href="#" class="dash-nav-link" data-tab-index="2">
-            <i class="fa-solid fa-box-open"></i> Toffee Pack Inventory
+            <i class="fa-solid fa-box-open"></i> Tropical Pack Inventory
           </a>
           <a href="#" class="dash-nav-link" data-tab-index="3">
-            <i class="fa-solid fa-gift"></i> Reward Payouts
+            <i class="fa-solid fa-gift"></i> Cashback Payouts
           </a>
           <a href="#" class="dash-nav-link" data-tab-index="4">
             <i class="fa-solid fa-gear"></i> Merchant Settings
@@ -418,11 +419,11 @@
         <div class="dash-section-header">
           <div class="dash-section-title-wrap">
             <h2 id="dashSectionTitle" class="dash-section-title">
-              Toffee Sales &amp; Customer Redemption Analytics
+              Tropical Vibe Sales &amp; Customer Cashback Analytics
             </h2>
             <p id="dashSectionSub" class="dash-section-sub">
-              Monitor daily toffee pack sales, customer claim details, and
-              payouts in real-time.
+              Monitor daily pack sales, customer cashback claims, and
+              merchant payouts in real-time.
             </p>
           </div>
           <span class="dash-date-badge">
@@ -436,15 +437,15 @@
           <div class="dash-overview-promo">
             <img
               src="assets/toffee.webp"
-              alt="Mango Rush Pack"
+              alt="My Tropical Vibe Pack"
               class="dash-overview-promo-img"
             />
             <div class="dash-overview-promo-text">
               <strong class="dash-overview-promo-title"
-                >Tropicano Mango Rush Campaign</strong
+                >My Tropical Vibe Campaign</strong
               >
               <span class="dash-overview-promo-sub"
-                >1x Free Tropicano Mango Rush Pack per customer redemption
+                >Instant UPI Cashback + Reward Offer per customer redemption
                 claim</span
               >
             </div>
@@ -456,8 +457,8 @@
                 <i class="fa-solid fa-rotate-right"></i>
               </div>
               <div class="dash-kpi-data">
-                <span class="dash-kpi-label">Total Trails Done Till Now</span>
-                <strong class="dash-kpi-value">2 <small>trails</small></strong>
+                <span class="dash-kpi-label">Cashback Claims Processed</span>
+                <strong class="dash-kpi-value">2 <small>claims</small></strong>
                 <span class="dash-kpi-trend dash-kpi-trend--up"
                   ><i class="fa-solid fa-arrow-trend-up"></i> Active
                   Campaign</span
@@ -469,7 +470,7 @@
                 <i class="fa-solid fa-indian-rupee-sign"></i>
               </div>
               <div class="dash-kpi-data">
-                <span class="dash-kpi-label">Total Amount Earned Till Now</span>
+                <span class="dash-kpi-label">Total Commission Earned</span>
                 <strong class="dash-kpi-value">₹40</strong>
                 <span class="dash-kpi-trend dash-kpi-trend--up"
                   ><i class="fa-solid fa-circle-check"></i> ₹20 Per Claim</span
@@ -481,7 +482,7 @@
                 <i class="fa-solid fa-hourglass-half"></i>
               </div>
               <div class="dash-kpi-data">
-                <span class="dash-kpi-label">Trail Left</span>
+                <span class="dash-kpi-label">Cashback Claims Left</span>
                 <strong class="dash-kpi-value"
                   >38 <small>remaining</small></strong
                 >
@@ -497,11 +498,11 @@
             <div class="dash-card-header">
               <div>
                 <h3 class="dash-card-title">
-                  Daily Mango Rush Pack Sales Trend
+                  Daily Tropical Vibe Cashback &amp; Sales Trend
                 </h3>
                 <p class="dash-card-sub">
-                  Daily volume of Tropicano Mango Rush packs sold vs verified
-                  customer claims
+                  Daily volume of My Tropical Vibe packs sold vs verified
+                  customer cashback claims
                 </p>
               </div>
               <div class="dash-filter-group">
@@ -533,10 +534,10 @@
             <div class="dash-card-header">
               <div>
                 <h3 class="dash-card-title">
-                  Customer Claim Records &amp; People Information
+                  Customer Cashback Claim Records &amp; People Information
                 </h3>
                 <p class="dash-card-sub">
-                  Click any customer row to view their available offer &amp;
+                  Click any customer row to view their cashback amount, UPI status &amp;
                   promo code details
                 </p>
               </div>
@@ -555,7 +556,7 @@
           </div>
         </div>
 
-        <!-- Tab 3: Toffee Pack Inventory -->
+        <!-- Tab 3: Tropical Vibe Pack Inventory -->
         <div id="tabInventory" class="dash-tab-pane" style="display: none">
           <div class="dash-kpi-grid">
             <div class="dash-kpi-card">
@@ -563,7 +564,7 @@
                 <i class="fa-solid fa-boxes-stacked"></i>
               </div>
               <div class="dash-kpi-data">
-                <span class="dash-kpi-label">Total Received Stock</span>
+                <span class="dash-kpi-label">Total Campaign Stock Received</span>
                 <strong class="dash-kpi-value"
                   >5,000 <small>packs</small></strong
                 >
@@ -577,7 +578,7 @@
                 <i class="fa-solid fa-truck-fast"></i>
               </div>
               <div class="dash-kpi-data">
-                <span class="dash-kpi-label">Distributed / Sold</span>
+                <span class="dash-kpi-label">Cashback Redeemed &amp; Sold</span>
                 <strong class="dash-kpi-value dash-text-green"
                   >3,482 <small>packs (69.6%)</small></strong
                 >
@@ -594,7 +595,7 @@
                 <i class="fa-solid fa-warehouse"></i>
               </div>
               <div class="dash-kpi-data">
-                <span class="dash-kpi-label">Remaining Shelf Stock</span>
+                <span class="dash-kpi-label">Remaining Cashback Stock</span>
                 <strong class="dash-kpi-value dash-text-blue"
                   >1,518 <small>packs</small></strong
                 >
@@ -612,8 +613,8 @@
           <div class="dash-card">
             <div class="dash-card-header">
               <h3 class="dash-card-title">
-                <i class="fa-solid fa-boxes-stacked dash-icon-gold"></i> Mango
-                Rush Stock Batches &amp; Inventory Log
+                <i class="fa-solid fa-boxes-stacked dash-icon-gold"></i> Tropical
+                Vibe Stock Batches &amp; Inventory Log
               </h3>
               <button type="button" class="dash-btn dash-btn--outline">
                 <i class="fa-solid fa-truck-ramp-box"></i> Request Re-Stock
@@ -625,7 +626,7 @@
                   <div class="dash-batch-title-group">
                     <strong class="dash-mono">#BATCH-B4082</strong>
                     <span class="dash-batch-title"
-                      >Signature Tropicano Mango Rush (Pack of 500)</span
+                      >Signature My Tropical Vibe (Pack of 500)</span
                     >
                   </div>
                   <span class="dash-badge dash-badge--green-solid"
@@ -657,7 +658,7 @@
                   <div class="dash-batch-title-group">
                     <strong class="dash-mono">#BATCH-B3991</strong>
                     <span class="dash-batch-title"
-                      >Signature Tropicano Mango Rush (Pack of 500)</span
+                      >Signature My Tropical Vibe (Pack of 500)</span
                     >
                   </div>
                   <span class="dash-badge dash-badge--muted-solid"
@@ -689,7 +690,7 @@
                   <div class="dash-batch-title-group">
                     <strong class="dash-mono">#BATCH-B3820</strong>
                     <span class="dash-batch-title"
-                      >Signature Tropicano Mango Rush (Pack of 500)</span
+                      >Signature My Tropical Vibe (Pack of 500)</span
                     >
                   </div>
                   <span class="dash-badge dash-badge--muted-solid"
@@ -865,7 +866,7 @@
                   <input
                     type="text"
                     class="dash-form-input"
-                    value="Tropicano Mango Rush Outlet #402"
+                    value="Tropical Vibe Mart #402"
                   />
                 </div>
                 <div class="dash-form-group">
@@ -882,7 +883,7 @@
                   <input
                     type="text"
                     class="dash-form-input"
-                    value="merchant.tropicano@upi"
+                    value="merchant.tropical@upi"
                   />
                 </div>
                 <div class="dash-form-group">
@@ -920,7 +921,7 @@
         <div class="dash-modal-header">
           <img
             src="assets/logo-toffee.webp"
-            alt="Tropicano Mango Rush Logo"
+            alt="My Tropical Vibe Logo"
             class="dash-modal-logo"
             onerror="this.src = 'assets/toffee.webp'"
           />
@@ -952,7 +953,7 @@
           </div>
           <div class="dash-modal-row">
             <span class="dash-modal-label"
-              ><i class="fa-solid fa-ticket"></i> Happy Code</span
+              ><i class="fa-solid fa-ticket"></i> Reward Code</span
             >
             <span id="offerModalHappyCode" class="dash-badge dash-badge--dark"
               >7892</span
@@ -982,7 +983,7 @@
             <span
               id="offerModalOfferTitle"
               class="dash-modal-val dash-text-green"
-              >20% Cashback + Bonus Mango Pack</span
+              >20% Cashback + Bonus Tropical Pack</span
             >
           </div>
           <div class="dash-modal-row">
@@ -990,7 +991,7 @@
               ><i class="fa-solid fa-barcode"></i> Promo Voucher Code</span
             >
             <span id="offerModalOfferCode" class="dash-badge dash-badge--gold"
-              >MANGO-RUSH-77</span
+              >TROPIC-CASH-77</span
             >
           </div>
         </div>

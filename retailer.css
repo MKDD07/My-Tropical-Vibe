@@ -187,13 +187,15 @@ body {
 }
 
 .btn-skip-top {
-  background: conic-gradient(
-    from 231.52deg at 51.59% 60.57%,
-    #f1a202 0deg,
-    #fcbf07 65.99deg,
-    #fcc111 189.52deg,
-    #f1a202 360deg
-  ) !important;
+background: conic-gradient(
+  from 225deg at 50% 55%,
+  #F7B800 0deg,
+  #FFD95A 75deg,
+  #D8ED63 155deg,
+  #FFE05C 230deg,
+  #F5B21A 300deg,
+  #F7B800 360deg
+) !important;
   box-shadow:
     inset 0px 4px 1px #fed845,
     inset 0px -4px 1px #e97202 !important;
@@ -606,13 +608,15 @@ body {
 .btn-confirm-submit {
   width: 100%;
   height: 52px;
-  background: conic-gradient(
-    from 231.52deg at 51.59% 60.57%,
-    #f1a202 0deg,
-    #fcbf07 65.99deg,
-    #fcc111 189.52deg,
-    #f1a202 360deg
-  ) !important;
+background: conic-gradient(
+  from 225deg at 50% 55%,
+  #F7B800 0deg,
+  #FFD95A 75deg,
+  #D8ED63 155deg,
+  #FFE05C 230deg,
+  #F5B21A 300deg,
+  #F7B800 360deg
+) !important;
   box-shadow:
     inset 0px 4px 1px #fed845,
     inset 0px -4px 1px #e97202,
@@ -764,13 +768,15 @@ body {
 .modal-btn-confirm {
   width: 100%;
   padding: 14px;
-  background: conic-gradient(
-    from 231.52deg at 51.59% 60.57%,
-    #f1a202 0deg,
-    #fcbf07 65.99deg,
-    #fcc111 189.52deg,
-    #f1a202 360deg
-  ) !important;
+background: conic-gradient(
+  from 225deg at 50% 55%,
+  #F7B800 0deg,
+  #FFD95A 75deg,
+  #D8ED63 155deg,
+  #FFE05C 230deg,
+  #F5B21A 300deg,
+  #F7B800 360deg
+) !important;
   box-shadow:
     inset 0px 4px 1px #fed845,
     inset 0px -4px 1px #e97202,
@@ -2370,13 +2376,15 @@ body {
 .btn-yes,
 .dash-btn--gold,
 .dash-modal-btn {
-  background: conic-gradient(
-    from 231.52deg at 51.59% 60.57%,
-    #f1a202 0deg,
-    #fcbf07 65.99deg,
-    #fcc111 189.52deg,
-    #f1a202 360deg
-  ) !important;
+background: conic-gradient(
+  from 225deg at 50% 55%,
+  #F7B800 0deg,
+  #FFD95A 75deg,
+  #D8ED63 155deg,
+  #FFE05C 230deg,
+  #F5B21A 300deg,
+  #F7B800 360deg
+) !important;
   box-shadow:
     inset 0px 4px 1px #fed845,
     inset 0px -4px 1px #e97202,

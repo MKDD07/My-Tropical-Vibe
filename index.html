@@ -6,10 +6,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Tropicano Mango Rush — Signature Experience</title>
+    <title>My Tropical Vibe — Instant Cashback & Rewards</title>
     <meta
       name="description"
-      content="Tropicano Mango Rush. Indulgent artisanal mango beverage and rewards."
+      content="My Tropical Vibe. Unlock instant UPI cashback and exclusive tropical rewards with every pack."
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,11 +39,14 @@
     <div id="presentationSelectorModal" class="steps-modal show">
       <div class="steps-modal-backdrop">
         <!-- First frame image of intro video as living background -->
-        <img
-          src="assets/video-initial.webp"
-          alt="Video First Frame"
-          class="backdrop-first-frame"
-        />
+        <picture>
+          <source srcset="assets/video-initial-916.webp" media="(max-width: 575px)" />
+          <img
+            src="assets/video-initial.webp"
+            alt="Tropical Vibe First Frame"
+            class="backdrop-first-frame"
+          />
+        </picture>
         <!-- Subtle dark mango tint over the video frame -->
         <div class="backdrop-frame-tint"></div>
       </div>
@@ -51,13 +54,13 @@
         <div class="welcome-logo-container">
           <img
             src="assets/secondary-pack.webp"
-            alt="Toffee Logo"
+            alt="Tropical Vibe Logo"
             class="welcome-logo-animated"
             onerror="this.src = 'assets/toffee.webp'"
           />
         </div>
         <p class="welcome-modal-text">
-          Select a simulation pathway to demonstrate the campaign experience:
+          Select a simulation pathway to explore the My Tropical Vibe cashback campaign:
         </p>
 
         <div class="welcome-options-container">
@@ -65,7 +68,7 @@
           <button id="btnCustomerJourney" class="btn-option btn-yes">
             <span
               ><i class="fa-solid fa-users welcome-btn-icon"></i> Customer
-              Journey Demo</span
+              Cashback Demo</span
             >
             <i class="fa-solid fa-chevron-right"></i>
           </button>
@@ -84,18 +87,21 @@
 
     <!-- Fullscreen QR Code Scanner Overlay -->
     <div id="qrScannerContainer" class="qr-scanner-container">
-      <img
-        src="assets/video-initial.webp"
-        alt="Video First Frame"
-        class="backdrop-first-frame"
-      />
+      <picture>
+        <source srcset="assets/video-initial-916.webp" media="(max-width: 575px)" />
+        <img
+          src="assets/video-initial.webp"
+          alt="Tropical Vibe First Frame"
+          class="backdrop-first-frame"
+        />
+      </picture>
       <button id="skipQrBtn" class="skip-qr-btn btn-yes">
         Skip <i class="fa-solid fa-chevron-right"></i>
       </button>
       <div class="qr-scanner-card">
-        <h2 class="qr-title">Scan QR Code</h2>
+        <h2 class="qr-title">Scan Pack QR Code</h2>
         <p class="qr-subtitle">
-          Scan your campaign packaging to unlock the tasting experience.
+          Scan your My Tropical Vibe packaging to unlock instant cashback.
         </p>
         <div
           id="qrReader"
@@ -152,12 +158,10 @@
         muted
         playsinline
         preload="auto"
-        poster="assets/video-initial.webp"
-        src="assets/video-initial.mp4"
       ></video>
     </div>
 
-    <!-- Choco Toffee Main Screen -->
+    <!-- My Tropical Vibe Main Screen -->
     <div id="mainScreen" class="main-screen">
       <!-- Top Right Info Button -->
       <button id="infoBtn" class="info-btn" aria-label="Information and Steps">
@@ -181,7 +185,7 @@
         <div class="welcome-logo-container">
           <img
             src="assets/not-received.webp"
-            alt="Toffee Logo"
+            alt="Tropical Vibe Logo"
             class="welcome-logo-animated"
             onerror="this.src = 'assets/toffee.webp'"
           />
@@ -189,8 +193,8 @@
         <div class="retailer-header" style="margin-top: 60px">
           <h2>Retailer Issue Report</h2>
           <p>
-            Please tell us why the retailer was unable to provide your Tropicano
-            Mango Rush reward.
+            Please let us know why the retailer was unable to provide your My Tropical Vibe
+            cashback reward.
           </p>
         </div>
 
@@ -209,7 +213,7 @@
             <span class="retailer-checkbox-text">
               <strong>Out of Stock</strong>
               <small
-                >Retailer doesn't have Tropicano Mango Rush available</small
+                >Retailer doesn't have My Tropical Vibe packs available</small
               >
             </span>
           </label>
@@ -226,7 +230,7 @@
             ></span>
             <span class="retailer-checkbox-text">
               <strong>Retailer Refused</strong>
-              <small>Merchant declined to honour the reward</small>
+              <small>Merchant declined to honour the cashback reward</small>
             </span>
           </label>
 
@@ -242,7 +246,7 @@
             ></span>
             <span class="retailer-checkbox-text">
               <strong>Retailer Unaware</strong>
-              <small>Shop owner has no knowledge of this campaign</small>
+              <small>Shop owner has no knowledge of the cashback campaign</small>
             </span>
           </label>
 
@@ -283,7 +287,7 @@
         </div>
         <div class="ios-call-info">
           <span class="ios-call-app-label">Phone &middot; Incoming Call</span>
-          <span class="ios-call-name">Tropicano Mango Rush Support</span>
+          <span class="ios-call-name">My Tropical Vibe Support</span>
         </div>
         <div class="ios-call-actions">
           <button
@@ -313,7 +317,7 @@
           <span class="voice-live-badge"></span>
         </div>
         <div class="voice-call-info">
-          <span class="voice-call-name">Tropicano Mango Rush Support</span>
+          <span class="voice-call-name">My Tropical Vibe Support</span>
           <span class="voice-call-meta">
             <span id="voiceCallStatus">On call</span>
             &middot;
@@ -352,7 +356,7 @@
           <input
             type="text"
             id="voiceFallbackText"
-            placeholder="Type your response to Sneha..."
+            placeholder="Type your response to Support..."
           />
           <button id="voiceFallbackSend" aria-label="Send message">
             <i class="fa-solid fa-paper-plane"></i>
@@ -370,7 +374,7 @@
               <span class="call-live-dot"></span>
             </div>
             <div class="call-active-info">
-              <span class="call-active-name">Tropicano Mango Rush Support</span>
+              <span class="call-active-name">My Tropical Vibe Support</span>
               <span class="call-active-duration" id="callDuration">00:00</span>
             </div>
             <button id="endCallBtn" class="call-end-btn">
@@ -401,15 +405,15 @@
         <div class="welcome-logo-container">
           <img
             src="assets/main-pack.webp"
-            alt="Toffee Logo"
+            alt="Tropical Vibe Logo"
             class="welcome-logo-animated"
             onerror="this.src = 'assets/toffee.webp'"
           />
         </div>
 
         <div class="drawer-header" style="margin-top: 60px">
-          <h2>Redeem Happy Code</h2>
-          <p>Enter your details below to claim your reward instantly</p>
+          <h2>Redeem Reward Code</h2>
+          <p>Enter your details below to claim your tropical cashback instantly</p>
         </div>
 
         <form
@@ -459,13 +463,15 @@
                     padding: 5px 10px;
                     font-size: 10px;
                     margin: 0;
-                    background: conic-gradient(
-                      from 231.52deg at 51.59% 60.57%,
-                      #f1a202 0deg,
-                      #fcbf07 65.99deg,
-                      #fcc111 189.52deg,
-                      #f1a202 360deg
-                    );
+background: conic-gradient(
+  from 225deg at 50% 55%,
+  #F7B800 0deg,
+  #FFD95A 75deg,
+  #D8ED63 155deg,
+  #FFE05C 230deg,
+  #F5B21A 300deg,
+  #F7B800 360deg
+) !important;
                     color: #3b1800;
                     border-radius: 8px;
                     border: none;
@@ -502,7 +508,7 @@
 
           <!-- Happy Code Field -->
           <div class="form-group">
-            <label>Enter Happy Code</label>
+            <label>Enter 4-Digit Pack Code</label>
             <div style="display: flex; align-items: center; gap: 10px">
               <div
                 class="happy-code-container"
@@ -551,10 +557,9 @@
               <input type="checkbox" id="chkSmoker" required />
               <span class="checkmark"></span>
               <span class="checkbox-label">
-                I hereby confirm that I am a smoker and 18 years of age or
-                older. I also consent to the company using my data for
-                future-related purposes. Read our
-                <a href="#" id="termsLink">Terms & Conditions</a>.
+                I hereby confirm that I am 18 years of age or older.
+                I agree to the campaign
+                <a href="#" id="termsLink">Terms & Conditions</a> and consent to receiving cashback updates.
               </span>
             </label>
           </div>
@@ -566,7 +571,7 @@
               <span class="checkmark"></span>
               <span class="checkbox-label">
                 I hereby consent to the retrieval and verification of my UPI ID
-                linked to my registered mobile number for transaction purposes.
+                linked to my registered mobile number for instant cashback transfer.
               </span>
             </label>
           </div>
@@ -577,7 +582,7 @@
             id="submitRedemptionBtn"
             class="btn-option btn-yes submit-redemption-btn"
           >
-            Submit Redemption
+            Claim Cashback
           </button>
         </form>
       </div>
@@ -585,26 +590,20 @@
       <!-- Premium Glassmorphism Chocolate Card Popup -->
       <div id="popup" class="popup-card">
         <div class="welcome-logo-container">
-          <img
-            src="assets/main-pack.webp"
-            alt="Toffee Logo"
-            class="welcome-logo-animated"
-            onerror="this.src = 'assets/toffee.webp'"
-          />
         </div>
 
-        <span class="popup-badge">EXCLUSIVITY UNLOCKED</span>
-        <h1 class="popup-title">SPECIAL GIFT</h1>
+        <span class="popup-badge">CASHBACK UNLOCKED</span>
+        <h1 class="popup-title">EXCLUSIVE REWARD</h1>
         <p class="popup-subtitle">
-          Thank you for choosing our signature Tropicano Mango Rush.
+          Thank you for choosing My Tropical Vibe. Your cashback reward is ready!
         </p>
 
         <div class="reward-cards">
-          <img src="assets/discount-card.webp" alt="" width="200" />
+          <img src="assets/discount-card.webp" alt="Discount Reward Card" width="200" />
         </div>
 
         <div class="question-box">
-          <p class="question-text">Have you received your product?</p>
+          <p class="question-text">Have you received your product from the retailer?</p>
           <div class="button-group">
             <button class="btn-option btn-yes" id="btnYes">
               <span>Yes, I got it</span>
@@ -623,15 +622,14 @@
         style="display:none"
       >
       <div class="welcome-logo-container">
-          <img src="assets/main-pack.webp" alt="Toffee Logo" class="welcome-logo-animated" onerror="this.src = 'assets/toffee.webp'">
+          <img src="assets/main-pack.webp" alt="Tropical Vibe Logo" class="welcome-logo-animated" onerror="this.src = 'assets/toffee.webp'">
         </div>
         <!-- Ticket Top Section -->
         <div class="ticket-section-top" style="margin-top: 40px;">
           
-          <h2 class="popup-title">Scratch to Avail</h2>
+          <h2 class="popup-title">Scratch for Cashback</h2>
           <p class="popup-subtitle" style="margin-top: 12px">
-            You've unlocked an exclusive Tropicano Mango Rush tasting
-            experience.
+            You've unlocked your exclusive My Tropical Vibe cashback reward!
           </p>
 
           <div class="retail-outlet-card">
@@ -642,13 +640,13 @@
             </div>
             <div class="outlet-details">
               <div class="outlet-header-row">
-                <span class="outlet-label">Assigned Retail Outlet</span>
+                <span class="outlet-label">Partner Retail Outlet</span>
                 <span class="outlet-verified-badge">
                   <i class="fa-solid fa-circle-check"></i>
                   <span>Verified</span>
                 </span>
               </div>
-              <h3 class="outlet-name">TROPICANO RUSH MART</h3>
+              <h3 class="outlet-name">TROPICAL VIBE MART</h3>
               <div class="outlet-meta-row">
                 <span class="outlet-location-chip">
                   <i class="fa-solid fa-location-dot"></i>
@@ -665,8 +663,7 @@
         <!-- Ticket Bottom Section -->
         <div class="ticket-section-bottom">
           <p class="claim-message-text">
-            Show this screen to the retailer to claim your complimentary
-            Tropicano Mango Rush.
+            Share this reward code with your retailer to complete your purchase & receive instant cashback.
           </p>
 
           <!-- Interactive Scratch Card Section -->
@@ -674,7 +671,7 @@
             <div class="scratch-card-container" id="scratchContainer">
               <!-- Hidden Secret Code Underneath -->
               <div class="scratch-secret-content" style="position: relative">
-                <span id="uniqueCodeText" class="code-text">MANGO-XXXX</span>
+                <span id="uniqueCodeText" class="code-text">TROPICAL-XXXX</span>
                 <button
                   id="copyCodeBtn"
                   class="copy-code-btn"
@@ -683,15 +680,14 @@
                   <i class="fa-regular fa-copy"></i>
                 </button>
                 <div id="copyTooltip" class="copy-tooltip">
-                  Share this with your retailer to avail cashback
+                  Share this code with your retailer to avail cashback
                 </div>
               </div>
               <!-- Canvas Overlay that gets scratched off -->
               <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
             </div>
             <p class="code-instruction-text">
-              Scratch the gold card above to reveal your code & show to
-              retailer!
+              Scratch the gold card above to reveal your reward code &amp; show to retailer!
             </p>
           </div>
 
@@ -712,9 +708,9 @@
       >
         <!-- Top Header Area -->
         <div class="social-modal-header" style="margin-block: 40px">
-          <h2 class="social-modal-title">Join Our Community</h2>
+          <h2 class="social-modal-title">Join Tropical Vibe Community</h2>
           <p class="social-modal-subtitle">
-            Rate your tasting experience &amp; connect with us!
+            Rate your experience &amp; stay tuned for more cashback offers!
           </p>
         </div>
 
@@ -825,8 +821,7 @@
         <div class="community-perk-banner">
           <i class="fa-solid fa-gift"></i>
           <span class="perk-desc"
-            >Tag <strong>#TropicanoMangoRush</strong> on IG to win
-            giveaways!</span
+            >Tag <strong>#MyTropicalVibe</strong> on IG to win bonus cashback!</span
           >
         </div>
 
@@ -853,12 +848,12 @@
         <div class="warning-header">
           <div class="popup-subtitle">
             <i class="fa-solid fa-circle-exclamation"></i>
-            <span>Campaign Limit</span>
+            <span>Offer Limit</span>
           </div>
 
-          <h2 class="popup-title">Already Redeemed</h2>
+          <h2 class="popup-title">Cashback Already Claimed</h2>
           <p class="warning-large-text">
-            You have already claimed this reward for the current cycle!
+            You have already redeemed your My Tropical Vibe cashback reward for this cycle!
           </p>
 
           <!-- Redemption metadata layout segment -->
@@ -876,7 +871,7 @@
                 <span class="meta-label">Redemption ID</span>
               </div>
               <span id="warnRedeemCode" class="meta-val code-val"
-                >LUV-X7H9K</span
+                >TROP-X7H9K</span
               >
             </div>
             <div class="meta-row status-row">
@@ -884,7 +879,7 @@
                 <i
                   class="fa-solid fa-hourglass-half meta-icon highlight-icon"
                 ></i>
-                <span class="meta-label">Reset Status</span>
+                <span class="meta-label">Next Reward Reset</span>
               </div>
               <span id="warnResetTimer" class="meta-val highlight-val"
                 >Resets in 28 Days</span
@@ -894,7 +889,7 @@
 
           <div class="frequency-limit-banner">
             <i class="fa-solid fa-shield-halved"></i>
-            <span>Campaign Limit: Max twice (2x) per 30 days (1 month).</span>
+            <span>Cashback Offer Limit: Max 2 redemptions per 30 days.</span>
           </div>
         </div>
 
@@ -916,23 +911,23 @@
           <img
             src="assets/packet.webp"
             class="steps-toffee-package"
-            alt="Tropicano Mango Rush Pack"
+            alt="My Tropical Vibe Pack"
           />
         </div>
 
         <div class="steps-header">
           <h2>How It Works</h2>
-          <p>Follow these quick steps to claim your reward</p>
+          <p>Follow these simple steps to claim your instant cashback</p>
         </div>
 
         <div class="steps-list">
           <div class="step-item">
             <div class="step-number">1</div>
             <div class="step-content">
-              <h3>Scan the QR Code</h3>
+              <h3>Scan the Pack QR Code</h3>
               <p>
-                Scan the QR code on your Tropicano Mango Rush pack to access the
-                cashback registration page.
+                Scan the QR code printed on your My Tropical Vibe pack to access the
+                cashback redemption portal.
               </p>
             </div>
           </div>
@@ -940,10 +935,10 @@
           <div class="step-item">
             <div class="step-number">2</div>
             <div class="step-content">
-              <h3>Enter Your Details</h3>
+              <h3>Enter Your Details &amp; Pack Code</h3>
               <p>
-                Provide your full name and mobile number to generate a unique
-                verification code.
+                Enter your mobile number and 4-digit pack code to generate your unique
+                cashback verification code.
               </p>
             </div>
           </div>
@@ -951,10 +946,10 @@
           <div class="step-item">
             <div class="step-number">3</div>
             <div class="step-content">
-              <h3>Share the Verification Code</h3>
+              <h3>Show Code to Retailer</h3>
               <p>
-                Show the generated verification code to the shopkeeper for quick
-                validation of your purchase.
+                Share your generated reward code with the partner retailer for quick
+                verification.
               </p>
             </div>
           </div>
@@ -962,10 +957,10 @@
           <div class="step-item">
             <div class="step-number">4</div>
             <div class="step-content">
-              <h3>Receive Instant Cashback</h3>
+              <h3>Receive Instant UPI Cashback</h3>
               <p>
-                Once your code is verified, your cashback is processed instantly
-                and credited as per the offer terms.
+                Once verified, your cashback is instantly credited to your linked UPI ID
+                as per campaign terms.
               </p>
             </div>
           </div>

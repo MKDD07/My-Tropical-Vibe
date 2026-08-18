@@ -14,37 +14,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================================
   const FLOATING_ASSETS_CONFIG = [
     {
-      src: "assets/fruits/0001", // File lacks .webp extension in dir listing
-      width: "120px", // Size (width)
-      animationDuration: "7s", // Speed of floating cycle
-      rotationOffset: "-8deg", // Initial tilt
+      src: "assets/icons/fruits_0000_Layer-1.png",
+      width: "120px",
+      animationDuration: "7s",
+      rotationOffset: "-8deg",
     },
     {
-      src: "assets/fruits/0002.webp",
+      src: "assets/icons/fruits_0001_Layer-2.png",
       width: "130px",
       animationDuration: "9s",
       rotationOffset: "10deg",
     },
     {
-      src: "assets/fruits/0003.webp",
+      src: "assets/icons/fruits_0002_Layer-3.png",
       width: "110px",
       animationDuration: "8s",
       rotationOffset: "0deg",
     },
     {
-      src: "assets/fruits/0004.webp",
+      src: "assets/icons/fruits_0003_Layer-4.png",
       width: "100px",
       animationDuration: "10s",
       rotationOffset: "15deg",
     },
     {
-      src: "assets/fruits/0005.webp",
+      src: "assets/icons/fruits_0004_Layer-5.png",
       width: "140px",
       animationDuration: "11s",
       rotationOffset: "-15deg",
     },
     {
-      src: "assets/fruits/0007.webp",
+      src: "assets/icons/fruits_0005_Layer-6.png",
       width: "90px",
       animationDuration: "12s",
       rotationOffset: "5deg",
@@ -101,6 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const videoContainer = document.getElementById("videoContainer");
   const introVideo = document.getElementById("introVideo");
+  if (introVideo) {
+    introVideo.poster = window.innerWidth < 576 ? "assets/video-initial-916.webp" : "assets/video-initial.webp";
+  }
   const mainScreen = document.getElementById("mainScreen");
   const popupTitle = document.querySelector(".popup-title");
   const particleCanvas = null; // removed
@@ -447,11 +450,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // State to track if the title popping animation has already run
   let titleAnimationHasRun = false;
 
+  function getInitialVideoSrc() {
+    return window.innerWidth < 576
+      ? "assets/video-initial-916.mp4"
+      : "assets/video-initial.mp4";
+  }
+
+  function getInitialVideoPoster() {
+    return window.innerWidth < 576
+      ? "assets/video-initial-916.webp"
+      : "assets/video-initial.webp";
+  }
+
   function startSilentIntroVideo() {
     if (!videoContainer || !introVideo) return;
 
-    // Play on ALL viewports
-    introVideo.src = "assets/video-initial.mp4";
+    // Play responsive initial video: 9:16 aspect on <576px, standard on desktop
+    introVideo.poster = getInitialVideoPoster();
+    introVideo.src = getInitialVideoSrc();
     videoContainer.style.display = "block";
     videoContainer.style.opacity = "0";
     gsap.fromTo(
@@ -1402,7 +1418,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showMissedCallToast();
         // Play reverse video transition, then show popup card and resume media
         setTimeout(() => {
-          playVideoInReverse("assets/video-initial.mp4", () => {
+          playVideoInReverse(getInitialVideoSrc(), () => {
             resumeBackgroundMedia();
             if (popup) popup.style.display = "block";
           });
@@ -1418,7 +1434,7 @@ document.addEventListener("DOMContentLoaded", () => {
         stopRingtone();
         dismissIosBanner();
         setTimeout(() => {
-          playVideoInReverse("assets/video-initial.mp4", () => {
+          playVideoInReverse(getInitialVideoSrc(), () => {
             resumeBackgroundMedia();
             if (popup) popup.style.display = "block";
           });
@@ -2036,7 +2052,7 @@ Your Instructions:
     // Play reverse video transition, then show popup card and resume background music
     setTimeout(
       () => {
-        playVideoInReverse("assets/video-initial.mp4", () => {
+        playVideoInReverse(getInitialVideoSrc(), () => {
           resumeBackgroundMedia();
           if (popup) popup.style.display = "block";
         });
@@ -2089,7 +2105,7 @@ Your Instructions:
   });
 
   function openSuccessDrawer() {
-    // Generate randomized unique redemption code (e.g. TOFFEE-XXXXX)
+    // Generate randomized unique redemption code (e.g. TROPICAL-XXXXX)
     if (uniqueCodeText) {
       const codeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
       let codeStr = "";
@@ -2098,7 +2114,7 @@ Your Instructions:
           Math.floor(Math.random() * codeChars.length),
         );
       }
-      uniqueCodeText.textContent = `TOFFEE-${codeStr}`;
+      uniqueCodeText.textContent = `TROPICAL-${codeStr}`;
     }
 
     switchCard(redemptionDrawer, successDrawer);
@@ -2234,29 +2250,31 @@ Your Instructions:
       },
     });
 
-    // 2. Prepare video container overlay, switch to video-end.mp4 and play forward
-    introVideo.src = "assets/video-end.mp4";
-    introVideo.currentTime = 0;
-    introVideo.onended = () => {
-      introVideo.pause(); // Ensure video stays paused on the last frame
-    };
-    videoContainer.style.display = "block";
-    videoContainer.dataset.transitioned = "end_video"; // Prevent auto-transition timer
+    // 2. Prepare video container overlay, switch to video-end.mp4 and play forward (only below 576px)
+    if (window.innerWidth < 576) {
+      introVideo.src = "assets/video-end.mp4";
+      introVideo.currentTime = 0;
+      introVideo.onended = () => {
+        introVideo.pause(); // Ensure video stays paused on the last frame
+      };
+      videoContainer.style.display = "block";
+      videoContainer.dataset.transitioned = "end_video"; // Prevent auto-transition timer
 
-    gsap.fromTo(
-      videoContainer,
-      { opacity: 0 },
-      {
-        opacity: 1,
-        duration: 1.2,
-        ease: "power2.inOut",
-        onComplete: () => {
-          introVideo.play().catch((err) => {
-            console.warn("Video end play interrupted or blocked:", err);
-          });
+      gsap.fromTo(
+        videoContainer,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1.2,
+          ease: "power2.inOut",
+          onComplete: () => {
+            introVideo.play().catch((err) => {
+              console.warn("Video end play interrupted or blocked:", err);
+            });
+          },
         },
-      },
-    );
+      );
+    }
   }
 
   // Copy code clipboard helper (Animation only, no actual clipboard API)
@@ -2294,7 +2312,7 @@ Your Instructions:
             Math.floor(Math.random() * codeChars.length),
           );
         }
-        uniqueCodeText.textContent = `TOFFEE-${codeStr}`;
+        uniqueCodeText.textContent = `TROPICAL-${codeStr}`;
       }
 
       // 2. Re-initialize canvas scratch overlay
@@ -2326,8 +2344,8 @@ Your Instructions:
       <div class="sms-content">
         <div class="sms-title" style="font-weight: 700; color: #0f172a;">PAYTM <span class="sms-time" style="font-size: 10px; color: #64748b; font-weight: 400;">now</span></div>
         <div class="sms-body" style="font-size: 12px; color: #334155; margin-top: 2px;">
-          <strong>Cashback Received: ₹50.00</strong><br/>
-          <span style="font-size: 10px; color: #64748b; display: block; margin-top: 1px;">Txn ID: 2026080415309483 • Ref: Tropicano Mango Rush Claim vpa: toffee@upi</span>
+          <strong>Cashback Received: ₹30.00</strong><br/>
+          <span style="font-size: 10px; color: #64748b; display: block; margin-top: 1px;">Txn ID: 2026080415309483 • Ref: My Tropical Vibe Cashback Claim vpa: tropical@upi</span>
         </div>
       </div>
     `;
@@ -2373,8 +2391,8 @@ Your Instructions:
       });
     }
 
-    // 2. Play video-end.mp4 ending video overlay seamlessly
-    if (videoContainer && introVideo) {
+    // 2. Play video-end.mp4 ending video overlay seamlessly (only below 576px)
+    if (window.innerWidth < 576 && videoContainer && introVideo) {
       introVideo.src = "assets/video-end.mp4";
       introVideo.currentTime = 0;
       introVideo.muted = true;
@@ -2546,18 +2564,30 @@ Your Instructions:
   let globalMatterEngine = null;
   let globalActiveBodies = [];
 
+  const ICON_ASSETS = [
+    "assets/icons/fruits_0000_Layer-1.png",
+    "assets/icons/fruits_0001_Layer-2.png",
+    "assets/icons/fruits_0002_Layer-3.png",
+    "assets/icons/fruits_0003_Layer-4.png",
+    "assets/icons/fruits_0004_Layer-5.png",
+    "assets/icons/fruits_0005_Layer-6.png",
+    "assets/icons/fruits_0006_Layer-7.png",
+    "assets/icons/fruits_0007_Layer-8.png",
+    "assets/icons/fruits_0008_Layer-9.png",
+    "assets/icons/fruits_0009_Layer-10.png",
+    "assets/icons/fruits_0010_Layer-11.png",
+    "assets/icons/fruits_0011_Layer-12.png",
+    "assets/icons/fruits_0012_Layer-13.png",
+    "assets/icons/fruits_0013_Layer-14.png",
+    "assets/icons/fruits_0014_Layer-15.png",
+    "assets/icons/fruits_0015_Layer-16.png",
+  ];
+
   function spawnFruitBlastParticles() {
     if (!globalMatterEngine || typeof Matter === "undefined") return;
     const { Bodies, Composite, Body } = Matter;
 
-    const fruits = [
-      "assets/fruits/0001",
-      "assets/fruits/0002.webp",
-      "assets/fruits/0003.webp",
-      "assets/fruits/0004.webp",
-      "assets/fruits/0005.webp",
-      "assets/fruits/0007.webp",
-    ];
+    const fruits = ICON_ASSETS;
 
     // Find the current coordinates of the pack image on screen
     const packImg = document.querySelector(".toffee-img");
@@ -2572,7 +2602,7 @@ Your Instructions:
 
     const blastQty = 15;
     for (let i = 0; i < blastQty; i++) {
-      const radius = 4 + Math.random() * 4; // Small in size
+      const radius = 12 + Math.random() * 8; // Sized for icon sprites
       const textureSrc = fruits[Math.floor(Math.random() * fruits.length)];
 
       const particle = Bodies.circle(originX, originY, radius, {
@@ -2583,8 +2613,8 @@ Your Instructions:
         render: {
           sprite: {
             texture: textureSrc,
-            xScale: (radius * 2) / 100,
-            yScale: (radius * 2) / 100,
+            xScale: (radius * 2) / 240,
+            yScale: (radius * 2) / 240,
           },
         },
       });
@@ -2606,6 +2636,9 @@ Your Instructions:
   function initMatterPhysicsToffees() {
     const container = document.getElementById("matterContainer");
     if (typeof Matter === "undefined" || !container) return;
+
+    // Clear any previous canvas before initialization
+    container.innerHTML = "";
 
     const {
       Engine,
@@ -2726,21 +2759,14 @@ Your Instructions:
     Composite.add(engine.world, mouseConstraint);
     render.mouse = mouse;
 
-    const fruits = [
-      "assets/fruits/0001",
-      "assets/fruits/0002.webp",
-      "assets/fruits/0003.webp",
-      "assets/fruits/0004.webp",
-      "assets/fruits/0005.webp",
-      "assets/fruits/0007.webp",
-    ];
+    const fruits = ICON_ASSETS;
 
     // Shuffle the fruits array to ensure diverse textures are spawned in random order
     const shuffledFruits = [...fruits].sort(() => Math.random() - 0.5);
 
     // Increase Matter object quantity/quality on desktop screen widths (>768px)
     const isDesktop = window.innerWidth > 768;
-    const spawnCount = isDesktop ? 24 : 10;
+    const spawnCount = isDesktop ? 24 : 12;
 
     const zones = [
       { xRange: [0.03, 0.22], yRange: [0.05, 0.28] }, // Top Left
@@ -2754,7 +2780,6 @@ Your Instructions:
     ];
 
     const shuffledZones = zones.sort(() => Math.random() - 0.5);
-    const activeFloatingBodies = [];
 
     // Increase engine sub-stepping constraint solver quality on desktop for smoother physics cycles
     if (isDesktop) {
@@ -2772,7 +2797,7 @@ Your Instructions:
           (Math.random() * (zone.yRange[1] - zone.yRange[0]) + zone.yRange[0]) *
           height;
 
-        const radius = 6 + Math.random() * 4;
+        const radius = isDesktop ? 16 + Math.random() * 10 : 12 + Math.random() * 6;
         const textureSrc = shuffledFruits[i % shuffledFruits.length];
 
         const toffeeBody = Bodies.circle(startX, startY, radius, {
@@ -2783,8 +2808,8 @@ Your Instructions:
           render: {
             sprite: {
               texture: textureSrc,
-              xScale: (radius * 2) / 100,
-              yScale: (radius * 2) / 100,
+              xScale: (radius * 2) / 240,
+              yScale: (radius * 2) / 240,
             },
           },
         });
@@ -2801,7 +2826,7 @@ Your Instructions:
         Body.setAngularVelocity(toffeeBody, (Math.random() - 0.5) * 0.02);
         Composite.add(engine.world, toffeeBody);
         globalActiveBodies.push(toffeeBody);
-      }, i * 150);
+      }, i * 120);
     }
   }
 
@@ -2919,7 +2944,8 @@ Your Instructions:
           break;
         case "video":
           if (videoContainer && introVideo) {
-            introVideo.src = "assets/video-initial.mp4";
+            introVideo.poster = getInitialVideoPoster();
+            introVideo.src = getInitialVideoSrc();
             introVideo.currentTime = 0;
             videoContainer.style.display = "block";
             videoContainer.dataset.transitioned = "";
@@ -2939,7 +2965,7 @@ Your Instructions:
           if (successDrawer) successDrawer.style.display = "block";
           break;
         case "video-end":
-          if (videoContainer && introVideo) {
+          if (window.innerWidth < 576 && videoContainer && introVideo) {
             introVideo.src = "assets/video-end.mp4";
             introVideo.currentTime = 0;
             videoContainer.style.display = "block";

@@ -11,7 +11,7 @@ body {
   height: 100%;
   overflow: hidden;
   font-family: "Google Sans Flex", sans-serif;
-  background: #0b160b url("assets/video-initial.webp") no-repeat center center;
+  background: #0b160b url("assets/banner-main.png") no-repeat center center;
   background-size: cover;
   color: #fafafa;
   position: relative;
@@ -219,7 +219,8 @@ h6 {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: #0b160b;
+  background: #0b160b url("assets/banner-main.png") no-repeat center center;
+  background-size: cover;
   overflow: hidden;
   position: relative;
 }
@@ -227,11 +228,9 @@ h6 {
 .main-screen::before {
   content: "";
   position: absolute;
-  inset: -12px;
-  background: #0b160b url("assets/video-initial.webp") no-repeat center center;
+  inset: 0;
+  background: #0b160b url("assets/banner-main.png") no-repeat center center;
   background-size: cover;
-  filter: blur(3px);
-  transform: scale(1.04);
   pointer-events: none;
   z-index: 0;
 }
@@ -644,13 +643,15 @@ h6 {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: conic-gradient(
-    from 231.52deg at 51.59% 60.57%,
-    #f1a202 0deg,
-    #fcbf07 65.99deg,
-    #fcc111 189.52deg,
-    #f1a202 360deg
-  ) !important;
+background: conic-gradient(
+  from 225deg at 50% 55%,
+  #F7B800 0deg,
+  #FFD95A 75deg,
+  #D8ED63 155deg,
+  #FFE05C 230deg,
+  #F5B21A 300deg,
+  #F7B800 360deg
+) !important;
   box-shadow:
     inset 0px 4px 1px #fed845,
     inset 0px -4px 1px #e97202 !important;
@@ -1220,13 +1221,15 @@ h6 {
 /* Rectangle 73 */
 
 .btn-yes {
-  background: conic-gradient(
-    from 231.52deg at 51.59% 60.57%,
-    #f1a202 0deg,
-    #fcbf07 65.99deg,
-    #fcc111 189.52deg,
-    #f1a202 360deg
-  ) !important;
+background: conic-gradient(
+  from 225deg at 50% 55%,
+  #F7B800 0deg,
+  #FFD95A 75deg,
+  #D8ED63 155deg,
+  #FFE05C 230deg,
+  #F5B21A 300deg,
+  #F7B800 360deg
+) !important;
   box-shadow:
     inset 0px 4px 1px #fed845,
     inset 0px -4px 1px #e97202 !important;
@@ -1514,6 +1517,16 @@ h6 {
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+}
+
+.steps-modal-backdrop picture,
+.qr-scanner-container picture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
 }
 
 /* First-frame image that lives inside the welcome modal backdrop */

@@ -66,14 +66,20 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "power2.out",
       onComplete: () => {
         const bgVid = document.querySelector(".bg-video-el");
-        if (bgVid) bgVid.play().catch(() => {});
+        if (bgVid) {
+          bgVid.poster = window.innerWidth < 576 ? "assets/video-initial-916.webp" : "assets/video-initial.webp";
+          bgVid.play().catch(() => {});
+        }
         setTimeout(startAutomatedPresentation, 500);
       }
     }, "-=0.4");
   } else if (mainContent) {
     mainContent.style.opacity = 1;
     const bgVid = document.querySelector(".bg-video-el");
-    if (bgVid) bgVid.play().catch(() => {});
+    if (bgVid) {
+      bgVid.poster = window.innerWidth < 576 ? "assets/video-initial-916.webp" : "assets/video-initial.webp";
+      bgVid.play().catch(() => {});
+    }
     setTimeout(startAutomatedPresentation, 1000);
   }
 
@@ -472,20 +478,20 @@ document.addEventListener("DOMContentLoaded", () => {
   if (weeklyBtn) weeklyBtn.addEventListener("click", () => setActiveChartFilter(weeklyBtn, "weekly"));
   if (monthlyBtn) monthlyBtn.addEventListener("click", () => setActiveChartFilter(monthlyBtn, "monthly"));
 
-  // Customer Claims Dataset & Offer Codes (Tropicano Mango Rush)
+  // Customer Claims Dataset & Offer Codes (My Tropical Vibe)
   const initialCustomers = [
-    { name: "Mohit Sharma", mobile: "7206611307", upiId: "BHARATPE.900687@fbpe", date: "2026-02-16", amount: "50", status: "SUCCESS", happyCode: "7892", item: "1x Tropicano Mango Rush Pack", time: "10:42 AM Today", offerTitle: "20% Cashback + Bonus Mango Rush Pack", offerCode: "MANGO-RUSH-77" },
-    { name: "Priya Verma", mobile: "7206611307", upiId: "BHARATPE.900687@fbpe", date: "2026-02-17", amount: "20", status: "SUCCESS", happyCode: "4102", item: "1x Tropicano Mango Rush Pack", time: "09:15 AM Today", offerTitle: "Buy 2 Get 1 Free Tropicano Mango Rush", offerCode: "TROPIC-MANGO-21" },
-    { name: "Rahul Mehta", mobile: "9712039485", upiId: "RAHULMEHTA@okhdfcbank", date: "2026-02-15", amount: "30", status: "SUCCESS", happyCode: "8823", item: "1x Tropicano Mango Rush Pack", time: "Yesterday", offerTitle: "₹50 Instant UPI Cashback on Mango Rush", offerCode: "MANGO-CASH-50" },
-    { name: "Ananya Roy", mobile: "9632147850", upiId: "ANANYAROY@paytm", date: "2026-02-14", amount: "20", status: "SUCCESS", happyCode: "1294", item: "1x Tropicano Mango Rush Pack", time: "Yesterday", offerTitle: "Free Tropicano Mango Rush Gift Box", offerCode: "MANGO-BOX-99" },
-    { name: "Suresh Kumar", mobile: "9541236987", upiId: "SURESHK@ybl", date: "2026-02-13", amount: "50", status: "SUCCESS", happyCode: "9031", item: "1x Tropicano Mango Rush Pack", time: "02 Aug 2026", offerTitle: "15% Retailer Mango Rush Special Bonus", offerCode: "RUSH-REWARD-15" }
+    { name: "Mohit Sharma", mobile: "7206611307", upiId: "BHARATPE.900687@fbpe", date: "2026-02-16", amount: "50", status: "SUCCESS", happyCode: "7892", item: "1x My Tropical Vibe Pack", time: "10:42 AM Today", offerTitle: "20% Cashback + Bonus Tropical Pack", offerCode: "TROPIC-CASH-77" },
+    { name: "Priya Verma", mobile: "7206611307", upiId: "BHARATPE.900687@fbpe", date: "2026-02-17", amount: "20", status: "SUCCESS", happyCode: "4102", item: "1x My Tropical Vibe Pack", time: "09:15 AM Today", offerTitle: "Buy 2 Get ₹30 Instant Cashback", offerCode: "TROPIC-VIBE-21" },
+    { name: "Rahul Mehta", mobile: "9712039485", upiId: "RAHULMEHTA@okhdfcbank", date: "2026-02-15", amount: "30", status: "SUCCESS", happyCode: "8823", item: "1x My Tropical Vibe Pack", time: "Yesterday", offerTitle: "₹50 Instant UPI Cashback on Tropical Vibe", offerCode: "TROPIC-UPI-50" },
+    { name: "Ananya Roy", mobile: "9632147850", upiId: "ANANYAROY@paytm", date: "2026-02-14", amount: "20", status: "SUCCESS", happyCode: "1294", item: "1x My Tropical Vibe Pack", time: "Yesterday", offerTitle: "Free Tropical Vibe Cashback Gift Box", offerCode: "TROPIC-BOX-99" },
+    { name: "Suresh Kumar", mobile: "9541236987", upiId: "SURESHK@ybl", date: "2026-02-13", amount: "50", status: "SUCCESS", happyCode: "9031", item: "1x My Tropical Vibe Pack", time: "02 Aug 2026", offerTitle: "15% Retailer Tropical Vibe Cashback Special", offerCode: "VIBE-REWARD-15" }
   ];
 
   const offerTemplates = [
-    { offerTitle: "25% Cashback + Free Mango Rush Pack", offerCode: "MANGO-BONUS-25" },
-    { offerTitle: "Buy 1 Get 1 Free Tropicano Mango Rush", offerCode: "BOGO-MANGO-GOLD" },
+    { offerTitle: "25% Cashback + Free Tropical Vibe Pack", offerCode: "TROPIC-BONUS-25" },
+    { offerTitle: "Buy 1 Get 1 Free My Tropical Vibe", offerCode: "BOGO-TROPIC-GOLD" },
     { offerTitle: "₹100 Instant Merchant Reward Voucher", offerCode: "REWARD-100-UPI" },
-    { offerTitle: "Exclusive VIP Mango Rush Sample Pack", offerCode: "VIP-SAMPLE-MANGO" }
+    { offerTitle: "Exclusive VIP Tropical Vibe Cashback Pack", offerCode: "VIP-SAMPLE-TROPIC" }
   ];
 
   function renderCustomerTable(filterText = "") {
@@ -585,9 +591,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Section Tab Navigation Handler for Sidebar Items
   const sectionMeta = [
-    { title: "Toffee Sales & Customer Redemption Analytics", sub: "Monitor daily toffee pack sales, customer claim details, and payouts in real-time." },
-    { title: "Customer Claims & Offer Voucher Log", sub: "View complete records of customer code redemptions and available promo offer codes." },
-    { title: "Toffee Pack Shelf & Merchant Stock Inventory", sub: "Track remaining batch stock, total packs sold, and re-stock requests." },
+    { title: "Tropical Vibe Sales & Customer Cashback Analytics", sub: "Monitor daily pack sales, customer cashback claims, and merchant payouts in real-time." },
+    { title: "Customer Cashback Claims & Offer Voucher Log", sub: "View complete records of customer code redemptions and available promo offer codes." },
+    { title: "Tropical Vibe Shelf & Merchant Stock Inventory", sub: "Track remaining batch stock, total packs sold, and re-stock requests." },
     { title: "Merchant Commission & Reward Payout Statements", sub: "Historical record of settled merchant commissions and payout timelines." },
     { title: "Retailer Merchant Store Settings", sub: "Manage store outlet info, SFA ID credentials, and settlement UPI accounts." }
   ];
