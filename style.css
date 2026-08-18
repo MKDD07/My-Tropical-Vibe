@@ -2732,8 +2732,8 @@ background: conic-gradient(
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: -110px;
-  left: 50%;
+  top: 0;
+  left: 0;
   transform: translateX(-50%);
 }
 .success-award-banner-container .welcome-logo-container {
